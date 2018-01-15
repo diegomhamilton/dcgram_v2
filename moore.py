@@ -16,21 +16,34 @@ labels.
 '''
 def default_initial_partition(g):
     partitions = []
+    already_in_partition = set()
     for s in g.states:
         s_edge_labels = set([oedge[0] for oedge in s.outedges])
+        print("Current state: {}\n\tOutedges: {}".format(s.name, s.outedges))#
         if not partitions:
             prt = pt.Partition(s)
+            print("\tCreating initial partition with s")#
             partitions.append(prt)
+            already_in_partition.add(s)
         else:
             # Removed fail_count
             for p in partitions:
                 # Solved bug with p.outedges (it was a list, so we must index position)
                 p_edge_labels = set([oedge[0] for oedge in p.outedges[0]])
-                if p_edge_labels == s_edge_labels:
+                print("\tCurrent partition: {}\n\t\tOutedges: {}".format(p.name, p.outedges))#
+                if (p_edge_labels == s_edge_labels):
+                    print("\t\t s added to partition")
                     p.add_to_partition(s)
-                else:
-                    prt = pt.Partition(s)
-                    partitions.append(prt)
+                    already_in_partition.add(s)
+
+            if s not in already_in_partition:
+                print("\t\tCreating new partition with s")
+                prt = pt.Partition(s)
+                partitions.append(prt)
+                already_in_partition.add(s)
+
+        print()
+        print()
     return ps.PartitionSet(partitions)
 
 '''
