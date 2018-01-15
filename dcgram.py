@@ -16,19 +16,19 @@ L = int(10e7)
 
 if load_original_sequence:
     # Load original sequence
-    with open('ternary_even_shift/sequences/original_v1\
+    with open('../dcgram_files/ternary_even_shift/sequences/original_v1\
     .yaml', 'r') as f:
         original_sequence = yaml.load(f)
 
 # Load sequence alphabet
-with open('ternary_even_shift/alphabet.yaml', 'r') as f:
+with open('../dcgram_files/ternary_even_shift/alphabet.yaml', 'r') as f:
     alphabet = yaml.load(f)
 # Load original sequence probabilities
-with open('ternary_even_shift/results/probabilities/original_v1\
+with open('../dcgram_files/ternary_even_shift/results/probabilities/original_v1\
 .yaml', 'r') as f:
     original_probs = yaml.load(f)
 # Load original sequence conditional probabilities
-with open('ternary_even_shift/results/probabilities/conditional/original_v1\
+with open('../dcgram_files/ternary_even_shift/results/probabilities/conditional/original_v1\
 .yaml', 'r') as f:
     original_cond_probs = yaml.load(f)
 
@@ -38,7 +38,7 @@ dmark_machines = [None]*drange[-1]
 if load_machines:
     # Load previously generated DMarkov Machines for D in drange
     for D in drange:
-        with open('ternary_even_shift/results/machines/dmark_{}.yaml'.format(D), \
+        with open('../dcgram_files/ternary_even_shift/results/machines/dmark_{}.yaml'.format(D), \
         'r') as f:
             dmark_machines[D-1] = yaml.load(f)
 else:
@@ -46,7 +46,7 @@ else:
     for D in drange:
         dmark_machines[D-1] = dm.DMarkov(original_cond_probs, D, alphabet)
 
-        with open('ternary_even_shift/results/machines/dmark_{}.yaml'.format(D), \
+        with open('../dcgram_files/ternary_even_shift/results/machines/dmark_{}.yaml'.format(D), \
         'w') as f:
             yaml.dump(dmark_machines[D-1], f)
 
@@ -61,35 +61,35 @@ if not load_probabilities:
     if load_sequences:
         # Load existing sequences
         for D in drange:
-            with open('ternary_even_shift/results/sequences/dmark_{}.yaml'.format(D), \
+            with open('../dcgram_files/ternary_even_shift/results/sequences/dmark_{}.yaml'.format(D), \
             'r') as f:
                 dmark_sequences[D-1] = yaml.load(f)
     else:
         for D in drange:
             dmark_sequences[D-1] = sg.generate_sequence(dmark_machines[D-1], D, L)   \
 
-            with open('ternary_even_shift/results/sequences/dmark_{}.yaml'.format(D), \
+            with open('../dcgram_files/ternary_even_shift/results/sequences/dmark_{}.yaml'.format(D), \
             'w') as f:
                 yaml.dump(dmark_sequences[D-1], f)
 
             # Computes probabilities
             dmark_probs[D-1], alphabet = sa.calc_probs(dmark_sequences[D-1], N)
             # Saves probabilities
-            with open('ternary_even_shift/results/probabilities/dmark_{}.yaml'.format(D),\
+            with open('../dcgram_files/ternary_even_shift/results/probabilities/dmark_{}.yaml'.format(D),\
              'w') as f:
                 yaml.dump(dmark_probs[D-1], f)
             # Computes conditional probabilities
             dmark_cond_probs[D-1] = sa.calc_cond_probs(dmark_probs[D-1], alphabet, N-1)
             # Saves conditional probabilities
-            with open('ternary_even_shift/results/probabilities/conditional/dmark_{}.yaml'\
+            with open('../dcgram_files/ternary_even_shift/results/probabilities/conditional/dmark_{}.yaml'\
             .format(D), 'w') as f:
                yaml.dump(dmark_cond_probs[D-1], f)
 else:
     for D in drange:
-        with open('ternary_even_shift/results/probabilities/dmark_{}.yaml'.format(D),\
+        with open('../dcgram_files/ternary_even_shift/results/probabilities/dmark_{}.yaml'.format(D),\
          'r') as f:
             dmark_probs[D-1] = yaml.load(f)
-        with open('ternary_even_shift/results/probabilities/conditional/dmark_{}.yaml'\
+        with open('../dcgram_files/ternary_even_shift/results/probabilities/conditional/dmark_{}.yaml'\
         .format(D), 'r') as f:
             dmark_cond_probs[D-1] = yaml.load(f)
 
@@ -115,20 +115,20 @@ if save_plot:
     plt.plot(number_of_states, sequence_entropies, 'ro')
     plt.xscale('log')
     plt.axis([0.1,10000,1.0,1.035])
-    plt.savefig('ternary_even_shift/results/plots/entropy_graph.png')
+    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/entropy_graph.png')
     plt.show()
     plt.gcf().clear()
 
     plt.plot(number_of_states, sequence_kldivergences, 'bx')
     plt.xscale('log')
     plt.axis([0.0,10000,0,0.14])
-    plt.savefig('ternary_even_shift/results/plots/kl_graph.png')
+    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/kl_graph.png')
     plt.show()
     plt.gcf().clear()
 
     plt.plot(number_of_states, sequence_euclidian_distances, 'g^')
     plt.xscale('log')
     plt.axis([0.0,10000, 0, 1.0])
-    plt.savefig('ternary_even_shift/results/plots/euclidian_graph.png')
+    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/euclidian_graph.png')
     plt.show()
     plt.gcf().clear()
