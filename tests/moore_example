@@ -1,0 +1,24 @@
+>>> states = []
+>>> import state as st
+>>> states.append(st.State('001', [('a','011'), ('b', '101')]))
+>>> states
+[<state.State object at 0x7f27335bac18>]
+>>> states.append(st.State('010', [('a','001')]))
+>>> states.append(st.State('011', [('a','010'), ('b', '100')]))
+>>> states.append(st.State('100', [('a','001')]))
+>>> states.append(st.State('101', [('a','110'), ('b', '100')]))
+>>> states.append(st.State('110', [('a','001')]))
+>>> import graph as g
+>>> machine = g.Graph(states, ['a', 'b'])
+>>> initial_pt_test = m.default_initial_partition(machine)
+>>> pt_test = m.moore(initial_pt_test, machine)
+>>> for p in pt_test.partitions:
+...     print(p.name)
+... 
+['001']
+['101']
+['011']
+['010', '100', '110']
+['100', '110']
+['110']
+
