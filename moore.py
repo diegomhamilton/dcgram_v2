@@ -19,10 +19,10 @@ def default_initial_partition(g):
     already_in_partition = set()
     for s in g.states:
         s_edge_labels = set([oedge[0] for oedge in s.outedges])
-        print("Current state: {}\n\tOutedges: {}".format(s.name, s.outedges))#
+        # print("Current state: {}\n\tOutedges: {}".format(s.name, s.outedges))#
         if not partitions:
             prt = pt.Partition(s)
-            print("\tCreating initial partition with s")#
+            # print("\tCreating initial partition with s")#
             partitions.append(prt)
             already_in_partition.add(s)
         else:
@@ -30,20 +30,20 @@ def default_initial_partition(g):
             for p in partitions:
                 # Solved bug with p.outedges (it was a list, so we must index position)
                 p_edge_labels = set([oedge[0] for oedge in p.outedges[0]])
-                print("\tCurrent partition: {}\n\t\tOutedges: {}".format(p.name, p.outedges))#
+                # print("\tCurrent partition: {}\n\t\tOutedges: {}".format(p.name, p.outedges))#
                 if (p_edge_labels == s_edge_labels):
-                    print("\t\t s added to partition")
+                    # print("\t\t s added to partition")
                     p.add_to_partition(s)
                     already_in_partition.add(s)
 
             if s not in already_in_partition:
-                print("\t\tCreating new partition with s")
+                # print("\t\tCreating new partition with s")
                 prt = pt.Partition(s)
                 partitions.append(prt)
                 already_in_partition.add(s)
 
-        print()
-        print()
+        # print()
+        # print()
     return ps.PartitionSet(partitions)
 
 '''
@@ -197,15 +197,18 @@ and p2.
 '''
 def intersection(p1, p2):
     inter = []
+
     for a in p1.name:
+        idx = 0
         for b in p2.name:
             if a == b:
-                inter.append(b)
+                inter.append(st.State(b, p2.outedges[idx]))
                 break
+            idx += 1
     if inter:
-        p = pt.Partition(st.State(inter.pop(0), []))
+        p = pt.Partition(inter.pop(0))
         for i in inter:
-            p.add_to_partition(st.State(i, []))
+            p.add_to_partition(i)
     else:
         p = pt.Partition(None)
     return p
