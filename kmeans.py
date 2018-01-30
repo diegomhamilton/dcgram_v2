@@ -9,8 +9,8 @@ import numpy as np
 import random
 
 
-def save_sequence(D, L=10e7, model = 'ternary_even_shift'):
-    with open('../dcgram_files/{}/results/machines/dmark_{}.yaml'.format(model, D), 'r') as f:
+def save_sequence(D, L, name = 'ternary_even_shift'):
+    with open('../dcgram_files/{}/results/machines/dmark_{}.yaml'.format(name, D), 'r') as f:
          machine = yaml.load(f)
 
     all_oedges = [state.outedges for state in machine.states]
@@ -56,6 +56,9 @@ def save_sequence(D, L=10e7, model = 'ternary_even_shift'):
 
     initial_partition = ps.PartitionSet(initial_partition)
     final_partition = m.moore(initial_partition, machine)
+
+    with open('../dcgram_files/{}/results/machines/dcgram_{}.yaml'.format(name, D), 'w') as f:
+        yaml.dump(final_partition, f)
 
     for p in final_partition.partitions:
         for i in range(len(p.name)):
@@ -144,4 +147,5 @@ def save_sequence(D, L=10e7, model = 'ternary_even_shift'):
         print()
         #END
     #END
+
     return sequence
