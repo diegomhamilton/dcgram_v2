@@ -9,7 +9,7 @@ class Partition(State):
     of the same partition set.
     '''
 
-    def __init__(self, state):
+    def __init__(self, state=None):
         #A new partition is initialized with just one state:
         self.name = [] if not state else [state.name]
         self.outedges = [] if not state else [state.outedges]
@@ -55,4 +55,3 @@ class Partition(State):
                 else:
                     self.outedges.remove(self.outedges[i])
             i += 1
-
