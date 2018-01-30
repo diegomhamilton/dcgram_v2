@@ -128,23 +128,18 @@ def save_sequence(D, L, name = 'ternary_even_shift'):
         for oedge in (final_partition.partitions[curr_partition]).outedges[0]:
             if oedge[0] == label:
                 state = oedge[1] #name of next state (gets first outedge in partition)
-        #DEBUG
-        print(state)
         j = 0
         breaker = False
         for p in final_partition.partitions:
             for state_named in p.name:
                 if state_named == state:
                     curr_partition = j
-                    #DEBUG
-                    print(final_partition.partitions[curr_partition].name)
                     breaker = True
                     break
             if breaker:
                 break
             else:
                 j += 1
-        print()
         #END
     #END
 
