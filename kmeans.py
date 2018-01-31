@@ -9,8 +9,8 @@ import numpy as np
 import random
 
 
-def save_sequence(D, L, name = 'ternary_even_shift'):
-    with open('../dcgram_files/{}/results/machines/dmark_{}.yaml'.format(name, D), 'r') as f:
+def generate_sequence(D, L, K, name = 'ternary_even_shift'):
+    with open('../dcgram_files/{}/results/machines/dmark/dmark_{}.yaml'.format(name, D), 'r') as f:
          machine = yaml.load(f)
 
     all_oedges = [state.outedges for state in machine.states]
@@ -23,7 +23,7 @@ def save_sequence(D, L, name = 'ternary_even_shift'):
             curr_morph[int(label)] = oedge[-1]
         morphs.append(curr_morph)
 
-    kmeans = k(n_clusters = 3, random_state = 0).fit(morphs)
+    kmeans = k(n_clusters = K, random_state = 0).fit(morphs)
 
     clusters = [[] for i in range(kmeans.n_clusters)]
 
@@ -37,7 +37,7 @@ def save_sequence(D, L, name = 'ternary_even_shift'):
         idx += 1
 
     plt.plot([x[0] for x in kmeans.cluster_centers_], [y[1] for y in kmeans.cluster_centers_], 'r+')
-    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/kmeans_dmark_7_3_clusters.png')
+    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/kmeans_dmark_D{}_K{}_clusters.png'.format(D, K))
     #----------------------------------------------------------------------------------
     #MOORE
     clusters = [[] for i in range(kmeans.n_clusters)]
