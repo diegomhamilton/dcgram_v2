@@ -10,7 +10,7 @@ import random
 
 
 def generate_sequence(D, L, K, name = 'ternary_even_shift'):
-    with open('../dcgram_files/{}/results/machines/dmark/dmark_{}.yaml'.format(name, D), 'r') as f:
+    with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), 'r') as f:
          machine = yaml.load(f)
 
     all_oedges = [state.outedges for state in machine.states]
