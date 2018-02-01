@@ -5,11 +5,12 @@ import dmarkov as dm
 import matplotlib.pyplot as plt
 
 name = 'ternary_even_shift'
+K = 5
 load_original_sequence = False
 load_machines = True
 load_sequences = False
-load_probabilities = False
-save_plot = False
+load_probabilities = True
+save_plot = True
 
 drange = range(4,10)# User defined range of machine's memory
 N = drange[-1] + 1  # Probabilities must be calculated for subesquences with length up to N
@@ -40,11 +41,11 @@ dcgram_machines = [None]*drange[-1]
 if load_machines:
     # Load previously generated DMarkov Machines for D in drange
     for D in drange:
-        with open('../dcgram_files/{}/results/machines/dmark_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
         'r') as f:
             dmark_machines[D-1] = yaml.load(f)
         #DEBUG REPORT
-        with open('../dcgram_files/{}/results/machines/dcgram_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), \
         'r') as f:
             dcgram_machines[D-1] = yaml.load(f)
 else:
@@ -52,7 +53,7 @@ else:
     for D in drange:
         dmark_machines[D-1] = dm.DMarkov(original_cond_probs, D, alphabet)
 
-        with open('../dcgram_files/{}/results/machines/dmark_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
         'w') as f:
             yaml.dump(dmark_machines[D-1], f)
 
@@ -70,46 +71,48 @@ if not load_probabilities:
     if load_sequences:
         # Load existing sequences
         for D in drange:
-            with open('../dcgram_files/{}/results/sequences/dmark_{}.yaml'.format(name, D), \
+            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_{}.yaml'.format(name, D), \
             'r') as f:
                 dmark_sequences[D-1] = yaml.load(f)
     else:
         for D in drange:
             dmark_sequences[D-1] = sg.generate_sequence(dmark_machines[D-1], D, L)   \
 
-            with open('../dcgram_files/{}/results/sequences/dmark_{}.yaml'.format(name, D), \
+            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_{}.yaml'.format(name, D), \
             'w') as f:
                 yaml.dump(dmark_sequences[D-1], f)
 
             # Computes probabilities
             dmark_probs[D-1], alphabet = sa.calc_probs(dmark_sequences[D-1], N)
             # Saves probabilities
-            with open('../dcgram_files/{}/results/probabilities/dmark_{}.yaml'.format(name, D),\
+            with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_{}.yaml'.format(name, D),\
              'w') as f:
                 yaml.dump(dmark_probs[D-1], f)
             # Computes conditional probabilities
             dmark_cond_probs[D-1] = sa.calc_cond_probs(dmark_probs[D-1], alphabet, N-1)
             # Saves conditional probabilities
-            with open('../dcgram_files/{}/results/probabilities/conditional/dmark_{}.yaml'\
+            with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_{}.yaml'\
             .format(name, D), 'w') as f:
                yaml.dump(dmark_cond_probs[D-1], f)
 else:
     for D in drange:
-        with open('../dcgram_files/{}/results/probabilities/dmark_{}.yaml'.format(name, D),\
+        with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_{}.yaml'.format(name, D),\
          'r') as f:
             dmark_probs[D-1] = yaml.load(f)
-        with open('../dcgram_files/{}/results/probabilities/conditional/dmark_{}.yaml'\
+        with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_{}.yaml'\
         .format(name, D), 'r') as f:
             dmark_cond_probs[D-1] = yaml.load(f)
         #DEBUG REPORT
-        with open('../dcgram_files/{}/results/probabilities/dcgram_{}.yaml'.format(name, D),\
+        with open('../dcgram_files/{}/results/probabilities/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K),\
          'r') as f:
             dcgram_probs[D-1] = yaml.load(f)
-        with open('../dcgram_files/{}/results/probabilities/conditional/dcgram_{}.yaml'\
-        .format(name, D), 'r') as f:
+        with open('../dcgram_files/{}/results/probabilities/conditional/dcgram/dcgram_D{}_K{}.yaml'\
+        .format(name, D, K), 'r') as f:
             dcgram_cond_probs[D-1] = yaml.load(f)
 
 # Data analysis section
+
+original_entropy = sa.calc_cond_entropy(original_probs, original_cond_probs, 9)[-1]
 
 number_of_states = []
 sequence_entropies = []
@@ -143,29 +146,42 @@ for D in drange:
 
 # Plots section
 if save_plot:
-    plt.plot(number_of_states, sequence_entropies, 'b^-')
+    plt.plot(number_of_states, sequence_entropies, 'b^-', label = 'DMarkov, D from 4 to 9')
     #DEBUG REPORT
-    plt.plot(number_of_states_2, sequence_entropies_2, 'g^-')
+    plt.plot(number_of_states_2, sequence_entropies_2, 'g^-', label = 'DCGram, D from 4 to 9')
+    plt.axhline(y=original_entropy, color='k', linestyle='-', label = 'Original sequence baseline')
     plt.xscale('log')
-    plt.axis([0.1, 10000, 1.0, 1.035])
-    plt.savefig('../dcgram_files/{}/results/plots/entropy_graph.png'.format(name))
+    plt.axis([1, 10000, 1.0, 1.035]) 
+    plt.title('Conditional entropy for the Ternary Even Shift')
+    plt.ylabel('$h_{10}$')
+    plt.xlabel('Number of states')
+    plt.legend(loc = 1)
+    plt.savefig('../dcgram_files/{}/results/plots/entropy_graph_K{}.png'.format(name, K))
     plt.show()
     plt.gcf().clear()
 
-    plt.plot(number_of_states, sequence_kldivergences, 'b^-')
+    plt.plot(number_of_states, sequence_kldivergences, 'b^-', label = 'DMarkov, D from 4 to 9')
     #DEBUG REPORT
-    plt.plot(number_of_states_2, sequence_kldivergences_2, 'g^-')
+    plt.plot(number_of_states_2, sequence_kldivergences_2, 'g^-', label = 'DCGram, D from 4 to 9')
     plt.xscale('log')
-    plt.axis([0.1, 10000, 0, 0.14])
-    plt.savefig('../dcgram_files/{}/results/plots/kl_graph.png'.format(name))
+    plt.axis([1, 10000, 0, 0.14])
+    plt.title('Kullback-Leibler Divergence for the Ternary Even Shift')
+    plt.ylabel('$D_{10}$')
+    plt.xlabel('Number of states')
+    plt.legend(loc = 1)
+    plt.savefig('../dcgram_files/{}/results/plots/kl_graph_K{}.png'.format(name, K))
     plt.show()
     plt.gcf().clear()
 
-    plt.plot(number_of_states, sequence_euclidian_distances, 'b^-')
+    plt.plot(number_of_states, sequence_euclidian_distances, 'b^-', label = 'DMarkov, D from 4 to 9')
     #DEBUG REPORT
-    plt.plot(number_of_states_2, sequence_euclidian_distances_2, 'g^-')
+    plt.plot(number_of_states_2, sequence_euclidian_distances_2, 'g^-', label = 'DCGram, D from 4 to 9')
     plt.xscale('log')
-    plt.axis([0.1, 10000, 0, 0.2])
-    plt.savefig('../dcgram_files/{}/results/plots/euclidian_graph.png'.format(name))
+    plt.axis([1, 10000, 0, 0.125])
+    plt.title('Euclidian Distance for the Ternary Even Shift')
+    plt.ylabel('$d_{10}$')
+    plt.xlabel('Number of states')
+    plt.legend(loc = 1)
+    plt.savefig('../dcgram_files/{}/results/plots/euclidian_graph_K{}.png'.format(name, K))
     plt.show()
     plt.gcf().clear()
