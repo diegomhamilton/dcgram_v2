@@ -57,7 +57,7 @@ def generate_sequence(D, L, K, moore_iter = -1, name = 'ternary_even_shift'):
     initial_partition = ps.PartitionSet(initial_partition)
     final_partition = m.moore_by_parts(initial_partition, machine, n_iter = moore_iter)
 
-    with open('../dcgram_files/{}/results/machines/dcgram_D{}_K{}.yaml'.format(name, D, K), 'w') as f:
+    with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), 'w') as f:
         yaml.dump(final_partition, f)
 
     for p in final_partition.partitions:
