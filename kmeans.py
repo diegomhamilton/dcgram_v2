@@ -9,7 +9,7 @@ import numpy as np
 import random
 
 
-def generate_sequence(D, L, K, name = 'ternary_even_shift'):
+def generate_sequence(D, L, K, moore_iter = -1, name = 'ternary_even_shift'):
     with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), 'r') as f:
          machine = yaml.load(f)
 
@@ -55,9 +55,9 @@ def generate_sequence(D, L, K, name = 'ternary_even_shift'):
 
 
     initial_partition = ps.PartitionSet(initial_partition)
-    final_partition = m.moore(initial_partition, machine)
+    final_partition = m.moore_by_parts(initial_partition, machine, n_iter = moore_iter)
 
-    with open('../dcgram_files/{}/results/machines/dcgram_{}.yaml'.format(name, D), 'w') as f:
+    with open('../dcgram_files/{}/results/machines/dcgram_D{}_K{}.yaml'.format(name, D, K), 'w') as f:
         yaml.dump(final_partition, f)
 
     for p in final_partition.partitions:
