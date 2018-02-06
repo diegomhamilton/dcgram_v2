@@ -18,6 +18,22 @@ class PartitionSet:
     #    for part in self.partitions:
     #        for other in self.partitions:
     #            part.update_edges(other)
+    '''
+    Name: find_in_partition
+    Input:
+        *name: name of the state to be found
+    Output:
+        *idx: index of the partition that contains the state
+    '''
+    def find_in_partition(self, name):
+        idx = 0
+        for p in self.partitions:
+            if name in p.name:
+                return i
+            else:
+                idx += 1
+        idx = -1
+        return idx
 
     '''
     Name: recover_graph
@@ -65,7 +81,7 @@ class PartitionSet:
             new_states.append(u)
         h = gr.Graph(new_states, g.alphabet)
         return h
-    
+
     def average_probs(self, base_probs, p, g, a):
         probs = {}
         for nm in p.name:
@@ -84,4 +100,3 @@ class PartitionSet:
             prob_for_edge.append(val)
         avg = sum(prob_for_edge)/total_prob
         return avg
-
