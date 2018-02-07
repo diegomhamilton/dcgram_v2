@@ -1,6 +1,10 @@
 import partition
 import graph as gr
+import probabilisticgraph as pg
 import state as st
+import probabilisticstate as pst
+import random
+import numpy as np
 
 '''
 A Partition Set is a collection of partition, which, in turn are collections
@@ -29,11 +33,41 @@ class PartitionSet:
         idx = 0
         for p in self.partitions:
             if name in p.name:
-                return i
+                return idx
             else:
                 idx += 1
         idx = -1
         return idx
+    '''
+    Name: redefine_partition
+    Output:
+        *new_graph: probabilistic graph with partition redefined as states
+    Description:
+        Redefines partition name as their index in the PartitionSet, choosing
+    randomly an destination state (in case the same label leads to different
+    partitions) and calculates the average probabilities for each edge.
+    '''
+    def redefine_partition(self):
+        new_states = [pst.ProbabilisticState(name = i) for i in range(len(self.partitions))]
+        alphabet = set([])
+
+        for s in new_states:
+            all_oedges = self.partitions[s.name].outedges
+            random_oedges = random.choice(all_oedges)
+
+            new_oedges = []
+            i = 0
+            for oedge in random_oedges:
+                label = oedge[0]
+                alphabet.add(label)
+                dest = self.find_in_partition(oedge[1])
+                curr_probs = [morph[i][-1] for morph in all_oedges]
+                probs = np.mean(curr_probs)
+                i += 1
+                new_oedges.append((label, dest, probs))
+            s.outedges = new_oedges
+
+        return new_states
 
     '''
     Name: recover_graph
