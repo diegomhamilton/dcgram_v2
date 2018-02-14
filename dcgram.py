@@ -21,7 +21,15 @@ def DCGraM(name = 'ternary_even_shift', \
             original_sequence = yaml.load(f)
         # Calculate probabilities
         original_probs, alphabet = sa.calc_probs(original_sequence, N)
+        with open('../dcgram_files/{}/original/alphabet.yaml'.format(name), 'w') as f:
+            yaml.dump(alphabet, f)
+        with open('../dcgram_files/{}/results/probabilities/original_v1.yaml'.format(name),\
+        'w') as f:
+            yaml.dump(original_probs, f)
         original_cond_probs = sa.calc_cond_probs(original_probs, alphabet, N-1)
+        with open('../dcgram_files/{}/results/probabilities/conditional/original_v1\
+                .yaml'.format(name), 'w') as f:
+            yaml.dump(original_cond_probs, f)
     else:
         # Load sequence alphabet
         with open('../dcgram_files/{}/original/alphabet.yaml'.format(name), 'r') as f:
@@ -50,13 +58,12 @@ def DCGraM(name = 'ternary_even_shift', \
                     dcgram_machines[K-1] = yaml.load(f)
     else:
         # Generate DMarkov Machines for D in drange
-        for D in drange:
-            dmark_machines = dm.DMarkov(original_cond_probs, D, alphabet)
-            with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
-            'w') as f:
-                yaml.dump(dmark_machines[D-1], f)
-            for K in krange:
-                dcgram_machines[K-1] = km.clusterize(dmark_machines[D-1], L, D, K, name = name)
+        dmark_machines = dm.DMarkov(original_cond_probs, D, alphabet)
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
+        'w') as f:
+            yaml.dump(dmark_machines, f)
+        for K in krange:
+            dcgram_machines[K-1] = km.clusterize(dmark_machines[D-1], L, D, K, name = name)
 
     dcgram_sequences = [[None] * K for d in drange]
     dmark_cond_probs = [None] * K
