@@ -24,7 +24,7 @@ class PartitionSet:
     #            part.update_edges(other)
     '''
     Name: find_in_partition
-    Input:
+    Input:self
         *name: name of the state to be found
     Output:
         *idx: index of the partition that contains the state
@@ -48,7 +48,7 @@ class PartitionSet:
     partitions) and calculates the average probabilities for each edge.
     '''
     def redefine_partition(self):
-        new_states = [pst.ProbabilisticState(name = i) for i in range(len(self.partitions))]
+        new_states = [pst.ProbabilisticState(i) for i in range(len(self.partitions))]
         alphabet = set([])
 
         for s in new_states:
@@ -66,8 +66,9 @@ class PartitionSet:
                 i += 1
                 new_oedges.append((label, dest, probs))
             s.outedges = new_oedges
+        new_pt = pg.ProbabilisticGraph(new_states, alphabet)
 
-        return new_states
+        return new_pt
 
     '''
     Name: recover_graph
