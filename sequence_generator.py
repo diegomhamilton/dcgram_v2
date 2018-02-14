@@ -14,11 +14,10 @@ Description:
     Starts with an predetermined state (all zeroes) and iterates L times,
     choosing next state in accord with labels probabilities.
 '''
-def generate_sequence(machine, D, L):
+def generate_sequence(machine, L):
     sequence = ''
-    # Set first state to "00..00"
-    curr_state_name = ''
-    curr_state_name = curr_state_name.zfill(D) #String with "curr_d" zeroes
+    # Starts in machine's first state
+    curr_state_name = machine.states[0].name
 
     for state in machine.states:
         if (state.name == curr_state_name):
@@ -36,7 +35,8 @@ def generate_sequence(machine, D, L):
         label = random.choices(labels, probabilities)[0]
         sequence = sequence + label
         # Goes to next state
-        curr_state_name = curr_state_name[1:] + label
+        curr_state_name = [outedge[1] for outedge in curr_state.outedges if \
+                            outedge[0] == label][0]
         for state in machine.states:
             if (state.name == curr_state_name):
                 curr_state = state
