@@ -16,13 +16,12 @@ def DCGraM(name = 'ternary_even_shift', \
 
     # **** Sequence initialization section ****
     if load_original_sequence:
-
         # Load original sequence
         with open('../dcgram_files/{}/original/original_v1.yaml'.format(name), 'r') as f:
             original_sequence = yaml.load(f)
         # Calculate probabilities
         original_probs, alphabet = sa.calc_probs(original_sequence, N)
-        original_cond_probs = sa.calc_cond_probs(original_sequence, alphabet, N-1)
+        original_cond_probs = sa.calc_cond_probs(original_probs, alphabet, N-1)
     else:
         # Load sequence alphabet
         with open('../dcgram_files/{}/original/alphabet.yaml'.format(name), 'r') as f:
