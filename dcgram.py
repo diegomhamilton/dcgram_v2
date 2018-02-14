@@ -48,14 +48,13 @@ def DCGraM(name = 'ternary_even_shift', \
 
     if load_machines:
         # Load previously generated DMarkov Machines for D in drange
-        for D in drange:
-            with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
+        'r') as f:
+            dmark_machines = yaml.load(f)
+        for K in krange:
+            with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), \
             'r') as f:
-                dmark_machines = yaml.load(f)
-            for K in krange:
-                with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), \
-                'r') as f:
-                    dcgram_machines[K-1] = yaml.load(f)
+                dcgram_machines[K-1] = yaml.load(f)
     else:
         # Generate DMarkov Machines for D in drange
         dmark_machines = dm.DMarkov(original_cond_probs, D, alphabet)
