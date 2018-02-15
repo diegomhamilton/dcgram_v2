@@ -46,10 +46,10 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift'):
     initial_pt = []
 
     for p in clusters:
-        pt = pt.Partition()
+        partition = pt.Partition()
         for state in p:
-            pt.add_to_pt(state)
-        initial_pt.append(pt)
+            partition.add_to_partition(state)
+        initial_pt.append(partition)
 
     initial_pt = ps.PartitionSet(initial_pt)
     final_pt = m.moore_by_parts(initial_pt, machine, n_iter = moore_iter)

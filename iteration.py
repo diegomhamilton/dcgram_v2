@@ -1,7 +1,7 @@
 import dcgram
 
 name = 'ternary_even_shift'
-load_original_sequence = True
+load_original_sequence = False
 load_machines = False
 load_sequences = False
 load_probabilities = False
@@ -15,7 +15,7 @@ L = int(10e6)
 
 for D in drange:
     dcgram.DCGraM(name = 'logistic_map', \
-                    load_original_sequence = True, \
+                    load_original_sequence = False, \
                     load_machines = False, \
                     load_sequences = False, \
                     load_probabilities = False, \
