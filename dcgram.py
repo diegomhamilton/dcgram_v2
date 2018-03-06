@@ -27,8 +27,8 @@ def DCGraM(name = 'ternary_even_shift', \
         'w') as f:
             yaml.dump(original_probs, f)
         original_cond_probs = sa.calc_cond_probs(original_probs, alphabet, N-1)
-        with open('../dcgram_files/{}/results/probabilities/conditional/original_v1\
-                .yaml'.format(name), 'w') as f:
+        with open('../dcgram_files/{}/results/probabilities/conditional/original_v1.yaml'\
+                    .format(name), 'w') as f:
             yaml.dump(original_cond_probs, f)
     else:
         # Load sequence alphabet
@@ -39,17 +39,16 @@ def DCGraM(name = 'ternary_even_shift', \
         'r') as f:
             original_probs = yaml.load(f)
         # Load original sequence conditional probabilities
-        with open('../dcgram_files/{}/results/probabilities/conditional/original_v1\
-                .yaml'.format(name), 'r') as f:
+        with open('../dcgram_files/{}/results/probabilities/conditional/original_v1.yaml'.format(name), 'r') as f:
             original_cond_probs = yaml.load(f)
 
-    # **** Machine initialization section ****
+    # **** Machine initialization section ****[None]
     dcgram_machines = [None]*krange[-1]
 
     if load_machines:
         # Load previously generated DMarkov Machines for D in drange
         with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
-        'r') as f:  
+        'r') as f:
             dmark_machines = yaml.load(f)
         for K in krange:
             with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), \
@@ -64,7 +63,8 @@ def DCGraM(name = 'ternary_even_shift', \
         for K in krange:
             dcgram_machines[K-1] = km.clusterize(dmark_machines, L, D, K, name = name)
 
-    dcgram_sequences = [[None] * K for d in drange]
+    dcgram_sequences = [None] * K
+    dcgram_probs = [None] * K
     dcgram_cond_probs = [None] * K
 
     # **** Sequence generation and/or probabilities initialization ****
@@ -85,6 +85,7 @@ def DCGraM(name = 'ternary_even_shift', \
                 yaml.dump(dmark_sequences, f)
             for K in krange:
                 dcgram_sequences[K-1] = sg.generate_sequence(dcgram_machines[K-1], L)
+                print('\n\n\n\nGENERATE SEQUENCE K={}\n\n\n\n\n\n'.format(K))
                 with open('../dcgram_files/{}/results/sequences/dcgram/dcgram_D{}_K{}.yaml'\
                             .format(name, D, K), 'w') as f:
                     yaml.dump(dcgram_sequences[K-1], f)
@@ -107,7 +108,7 @@ def DCGraM(name = 'ternary_even_shift', \
 
             for K in krange:
                 # Computes probabilities
-                dcgram_probs[K-1], alphabet = sa.calc_probs(sequence, N)
+                dcgram_probs[K-1], alphabet = sa.calc_probs(dcgram_sequences[K-1], N)
                 # Saves probabilities
                 with open('../dcgram_files/{}/results/probabilities/dcgram/dcgram_D{}_K{}.yaml'\
                             .format(name, D, K), 'w') as f:
@@ -141,7 +142,7 @@ def DCGraM(name = 'ternary_even_shift', \
                 .format(name), 'w') as f:
         yaml.dump(original_entropy, f)
 
-    dmark_entropy = sa.calc_cond_entropy(dcgram_probs, dmark_cond_probs, 9)[-1]
+    dmark_entropy = sa.calc_cond_entropy(dmark_probs, dmark_cond_probs, 9)[-1]
     with open('../dcgram_files/{}/results/cond_entropies/dmarkov/dmark_D{}.yaml'\
                 .format(name, D), 'w') as f:
         yaml.dump(dmark_entropy, f)
@@ -154,22 +155,20 @@ def DCGraM(name = 'ternary_even_shift', \
     #             .format(name, D), 'w') as f:
     #     yaml.dump(dmark_edist, f)
 
-    dcgram_entropy = []
-    dcgram_kldiv = []
     # dcgram_edist = []
-    for K in drange:
+    for K in krange:
         curr_machine = dcgram_machines[K-1]
         curr_probs = dcgram_probs[K-1]
         curr_cond_probs = dcgram_cond_probs[K-1]
 
-        dcgram_entropy.append(sa.calc_cond_entropy(curr_probs, curr_cond_probs, 9)[-1])
+        dcgram_entropy = sa.calc_cond_entropy(curr_probs, curr_cond_probs, 9)[-1]
         with open('../dcgram_files/{}/results/cond_entropies/dcgram/dcgram_D{}_K{}.yaml'\
                     .format(name, D, K), 'w') as f:
             yaml.dump(dcgram_entropy, f)
-        dcgram_kldiv.append(sa.calc_kldivergence(curr_probs, original_probs, 10))
+        dcgram_kldiv = sa.calc_kldivergence(curr_probs, original_probs, 10)
         with open('../dcgram_files/{}/results/kldivergences/dcgram/dcgram_D{}_K{}.yaml'\
                     .format(name, D, K), 'w') as f:
-            yaml.dump(original_entropy, f)
+            yaml.dump(dcgram_kldiv, f)
         # dcgram_edist.append(sa.calc_euclidian_distance(curr_probs, original_probs, 10))
         # with open('../dcgram_files/{}/results/euclidiandistance/dcgram/dcgram_D{}_K{}.yaml'\
         #             .format(name, D, K), 'w') as f:

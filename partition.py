@@ -55,3 +55,15 @@ class Partition(State):
                 else:
                     self.outedges.remove(self.outedges[i])
             i += 1
+
+    #returns all outedges completed with outedges that have p = 0
+    def fill_outedges(self, alphabet):
+        new_oedges = []
+        for oedge in self.outedges:
+            new_e = [None] * len(alphabet)
+            for label in alphabet:
+                new_e[int(label)] = (label, -1, 0.0)
+            for e in oedge:
+                new_e[int(e[0])] = e
+            new_oedges.append(new_e)
+        return new_oedges

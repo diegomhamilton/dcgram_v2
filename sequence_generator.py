@@ -29,8 +29,7 @@ def generate_sequence(machine, L):
         labels = [outedge[0] for outedge in curr_state.outedges]
         probabilities = [outedge[-1] for outedge in curr_state.outedges]
         # Weight formatting
-        for weight in probabilities:
-            weight = int(weight * 10e16)
+        probabilities = [int(p * 10e16) for p in probabilities]
         # Chooses next state
         label = random.choices(labels, probabilities)[0]
         sequence = sequence + label

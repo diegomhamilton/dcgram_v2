@@ -1,10 +1,29 @@
 import dcgram
 
-name = 'ternary_even_shift'
+''' Correct:
+        python3 iteration.py
+Traceback (most recent call last):
+  File "iteration.py", line 25, in <module>
+    load_probabilities, load_metrics, save_plots, L, D, krange, N)
+  File "/home/sid/workspace/IC/dcgram_v2/dcgram.py", line 65, in DCGraM
+    dcgram_machines[K-1] = km.clusterize(dmark_machines, L, D, K, name = name)
+  File "/home/sid/workspace/IC/dcgram_v2/kmeans.py", line 66, in clusterize
+    new_pt = final_pt.redefine_partition()
+  File "/home/sid/workspace/IC/dcgram_v2/partitionset.py", line 68, in redefine_partition
+    probs = np.mean(curr_probs)
+  File "/home/sid/anaconda3/lib/python3.6/site-packages/numpy/core/fromnumeric.py", line 2909, in mean
+    out=out, **kwargs)
+  File "/home/sid/anaconda3/lib/python3.6/site-packages/numpy/core/_methods.py", line 70, in _mean
+    ret = umr_sum(arr, axis, dtype, out, keepdims)
+TypeError: cannot perform reduce with flexible type
+
+'''
+
+name = 'logistic_map'
 load_original_sequence = False
-load_machines = False
-load_sequences = False
-load_probabilities = False
+load_machines = True
+load_sequences = True
+load_probabilities = True
 load_metrics = False
 save_plots = True
 
@@ -14,14 +33,8 @@ N = drange[-1] + 1      # Probabilities must be calculated for subesquences with
 L = int(10e6)
 
 for D in drange:
-    dcgram.DCGraM(name = 'logistic_map', \
-                    load_original_sequence = False, \
-                    load_machines = False, \
-                    load_sequences = False, \
-                    load_probabilities = False, \
-                    load_metrics = False, \
-                    save_plots = True, \
-                    L = 10e6, D = D, krange = range(2,8), N = N)
+    dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
+                    load_probabilities, load_metrics, save_plots, L, D, krange, N)
 
 ## **** Plots section ****
 # if save_plot:

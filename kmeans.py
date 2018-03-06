@@ -29,13 +29,18 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift'):
         clusters[kmeans.labels_[i]].append(morphs[i])
 
     idx = 0
-    plot = ['bo','g*','c^', 'mo', 'y*', 'k^', 'ro']
+    plot_label = ['bo','g*','c^', 'mo', 'y*', 'k^', 'ro']
     for c in clusters:
-        plt.plot([x[0] for x in c], [y[1] for y in c], plot[idx])
+        plt.plot([x[0] for x in c], [y[1] for y in c], plot_label[idx])
         idx += 1
 
     plt.plot([x[0] for x in kmeans.cluster_centers_], [y[1] for y in kmeans.cluster_centers_], 'r+')
-    plt.savefig('../dcgram_files/ternary_even_shift/results/plots/kmeans_dmark_D{}_K{}_clusters.png'.format(D, K))
+    plt.axis([0, 1.0, 0, 1.0])
+    plt.title('Clusters of morphs for K = ${}$', K)
+    plt.ylabel('$P('0')$')
+    plt.xlabel('$P('1')$')
+    plt.savefig('../dcgram_files/{}/results/plots/kmeans_dmark_D{}_K{}_clusters.png'.format(name, D, K))
+    plt.gcf().clear()
     #----------------------------------------------------------------------------------
     #MOORE
     clusters = [[] for i in range(kmeans.n_clusters)]
@@ -55,12 +60,10 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift'):
     final_pt = m.moore_by_parts(initial_pt, machine, n_iter = moore_iter)
 
     if (moore_iter == -1):
-        with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/\
-                    dcgram_D{}_K{}.yaml'.format(name, D, K), 'w') as f:
+        with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/dcgram_D{}_K{}.yaml'.format(name, D, K), 'w') as f:
             yaml.dump(final_pt, f)
     else:
-        with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/\
-                    dcgram_D{}_K{}_iter{}.yaml'.format(name, D, K, moore_iter), 'w') as f:
+        with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/dcgram_D{}_K{}_iter{}.yaml'.format(name, D, K, moore_iter), 'w') as f:
             yaml.dump(final_pt, f)
 
     new_pt = final_pt.redefine_partition()

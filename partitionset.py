@@ -49,23 +49,32 @@ class PartitionSet:
     '''
     def redefine_partition(self):
         new_states = [pst.ProbabilisticState(i) for i in range(len(self.partitions))]
+
         alphabet = set([])
 
         for s in new_states:
-            all_oedges = self.partitions[s.name].outedges
-            random_oedges = random.choice(all_oedges)
-
+            pt_copy = self.partitions[s.name]
+            #CHANGE THIS (PASS ALPHABET AS ARG)
+            all_oedges = pt_copy.fill_outedges({'0', '1', '2'})
+            print('all_oedges={}'.format(all_oedges))
+            random_oedges = random.choice(pt_copy.outedges)
+            print('random_oedges={}'.format(random_oedges))
             new_oedges = []
             i = 0
             for oedge in random_oedges:
+                print('oedge={}'.format(oedge))
                 label = oedge[0]
                 alphabet.add(label)
                 dest = self.find_in_partition(oedge[1])
-                curr_probs = [morph[i][-1] for morph in all_oedges]
-                probs = np.mean(curr_probs)
-                i += 1
-                new_oedges.append((label, dest, probs))
+                curr_probs = [morph[int(label)][-1] for morph in all_oedges if morph[int(label)][-1] != 0]
+                print('probs = {}'.format(curr_probs))
+                if curr_probs:
+                    probs = np.mean(curr_probs)
+                    new_oedges.append((label, dest, probs))
+                    #DEBUG
+                    print('new-oedges={}'.format((label, dest, probs)))
             s.outedges = new_oedges
+            print()
         new_pt = pg.ProbabilisticGraph(new_states, alphabet)
 
         return new_pt
