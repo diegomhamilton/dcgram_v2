@@ -36,9 +36,9 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift'):
 
     plt.plot([x[0] for x in kmeans.cluster_centers_], [y[1] for y in kmeans.cluster_centers_], 'r+')
     plt.axis([0, 1.0, 0, 1.0])
-    plt.title('Clusters of morphs for K = ${}$', K)
-    plt.ylabel('$P('0')$')
-    plt.xlabel('$P('1')$')
+    plt.title('Clusters of morphs for K = {}'.format(K))
+    plt.ylabel('$P(0)$')
+    plt.xlabel('$P(1)$')
     plt.savefig('../dcgram_files/{}/results/plots/kmeans_dmark_D{}_K{}_clusters.png'.format(name, D, K))
     plt.gcf().clear()
     #----------------------------------------------------------------------------------

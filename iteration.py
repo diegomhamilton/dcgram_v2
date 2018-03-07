@@ -19,16 +19,16 @@ TypeError: cannot perform reduce with flexible type
 
 '''
 
-name = 'logistic_map'
+name = 'ternary_even_shift'
 load_original_sequence = False
-load_machines = True
-load_sequences = True
-load_probabilities = True
+load_machines = False
+load_sequences = False
+load_probabilities = False
 load_metrics = False
 save_plots = True
 
-drange = range(4,10)    # Range of machine's memory
-krange = range(2,8)     # Number of clusters for each machine with memory D
+drange = range(9,10)    # Range of machine's memory
+krange = range(3,5)     # Number of clusters for each machine with memory D
 N = drange[-1] + 1      # Probabilities must be calculated for subesquences with length up to N
 L = int(10e6)
 

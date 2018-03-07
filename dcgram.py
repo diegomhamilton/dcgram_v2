@@ -47,7 +47,7 @@ def DCGraM(name = 'ternary_even_shift', \
 
     if load_machines:
         # Load previously generated DMarkov Machines for D in drange
-        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_D{}.yaml'.format(name, D), \
         'r') as f:
             dmark_machines = yaml.load(f)
         for K in krange:
@@ -57,7 +57,7 @@ def DCGraM(name = 'ternary_even_shift', \
     else:
         # Generate DMarkov Machines for D in drange
         dmark_machines = dm.DMarkov(original_cond_probs, D, alphabet)
-        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_{}.yaml'.format(name, D), \
+        with open('../dcgram_files/{}/results/machines/dmarkov/dmark_D{}.yaml'.format(name, D), \
         'w') as f:
             yaml.dump(dmark_machines, f)
         for K in krange:
@@ -71,7 +71,7 @@ def DCGraM(name = 'ternary_even_shift', \
     if not load_probabilities:
         if load_sequences:
             # Load existing sequences
-            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_{}.yaml'.format(name, D), \
+            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_D{}.yaml'.format(name, D), \
             'r') as f:
                 dmark_sequences = yaml.load(f)
             for K in krange:
@@ -80,7 +80,7 @@ def DCGraM(name = 'ternary_even_shift', \
                     dmark_sequences[K-1] = yaml.load(f)
         else:
             dmark_sequences = sg.generate_sequence(dmark_machines, L)
-            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_{}.yaml'\
+            with open('../dcgram_files/{}/results/sequences/dmarkov/dmark_D{}.yaml'\
                         .format(name, D), 'w') as f:
                 yaml.dump(dmark_sequences, f)
             for K in krange:
@@ -93,13 +93,13 @@ def DCGraM(name = 'ternary_even_shift', \
             # Computes probabilities
             dmark_probs, alphabet = sa.calc_probs(dmark_sequences, N)
             # Saves probabilities
-            with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_{}.yaml'.format(name, D),\
+            with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_D{}.yaml'.format(name, D),\
              'w') as f:
                 yaml.dump(dmark_probs, f)
             # Computes conditional probabilities
             dmark_cond_probs = sa.calc_cond_probs(dmark_probs, alphabet, N-1)
             # Saves conditional probabilities
-            with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_{}.yaml'\
+            with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_D{}.yaml'\
             .format(name, D), 'w') as f:
                yaml.dump(dmark_cond_probs, f)
             with open('../dcgram_files/{}/results/probabilities/conditional/dcgram/dcgram_D{}_K{}.yaml'\
@@ -123,7 +123,7 @@ def DCGraM(name = 'ternary_even_shift', \
         with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_{}.yaml'.format(name, D),\
          'r') as f:
             dmark_probs = yaml.load(f)
-        with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_{}.yaml'\
+        with open('../dcgram_files/{}/results/probabilities/conditional/dmarkov/dmark_D{}.yaml'\
         .format(name, D), 'r') as f:
             dmark_cond_probs = yaml.load(f)
 
