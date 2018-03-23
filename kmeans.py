@@ -33,14 +33,14 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
         clusters[kmeans.labels_[i]].append(morphs[i])
     if save_plot:
         idx = 0
-        plot_label = ['bo','g*','c^', 'mo', 'y*', 'k^', 'ro']
+        plot_label = ['bo','g*','c^', 'ms', 'yp', 'kh', 'rd', 'b>', 'r<']*5
         for c in clusters:
-            plt.plot([x[0] for x in c], [y[1] for y in c], plot_label[idx])
+            plt.plot([x[0] for x in c], [y[1] for y in c], plot_label[idx], alpha = 0.7)
             idx += 1
 
-        plt.plot([x[0] for x in kmeans.cluster_centers_], [y[1] for y in kmeans.cluster_centers_], 'r+')
+        plt.plot([x[0] for x in kmeans.cluster_centers_], [y[1] for y in kmeans.cluster_centers_], 'r+', markersize = 15)
         plt.axis([-0.05, 1.05, -0.05, 1.05])
-        plt.title('Agrupamento de morphs para D = {}, K = {}'.format(D, K))
+        # plt.title('Agrupamento de morphs para D = {}, K = {}'.format(D, K))
         plt.ylabel('$P(0)$')
         plt.xlabel('$P(1)$')
         plt.savefig('../dcgram_files/{}/results/plots/kmeans_dmark_D{}_K{}_clusters{}.png'.format(name, D, K, moore_label))
@@ -48,10 +48,8 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
     #----------------------------------------------------------------------------------
     #MOORE
     clusters = [[] for i in range(kmeans.n_clusters)]
-
     for i in range(len(morphs)):
         clusters[kmeans.labels_[i]].append(machine.states[i])
-
     initial_pt = []
 
     for p in clusters:
@@ -60,12 +58,11 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
             partition.add_to_partition(state)
         initial_pt.append(partition)
 
-    initial_pt = ps.PartitionSet(initial_pt)
-    final_pt = m.moore_by_parts(initial_pt, machine, n_iter = moore_iter)
+    initial_pt = ps.PartitionSet(initial_pt, alphabet = {0, 1, 2})
+    final_pt = m.moore_by_parts(machine, initial_pt, n_iter = moore_iter)
 
     with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/\dcgram_D{}_K{}{}.yaml'.format(name, D, K, moore_label), 'w') as f:
         yaml.dump(final_pt, f)
-
     new_pt = final_pt.redefine_partition()
 
     with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}{}.yaml'\
