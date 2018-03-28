@@ -1,4 +1,5 @@
 import dcgram
+import yaml
 
 ''' Correct:
         python3 iteration.py
@@ -25,7 +26,7 @@ load_machines = False
 load_sequences = False
 load_probabilities = False
 calc_metrics = True
-moore_iter = -1
+moore_iter = 0
 save_plots = True
 
 drange = range(4,10)    # Range of machine's memory
@@ -37,16 +38,26 @@ L = int(10e6)
 # # For D = 6, Moore takes 5 (logistic_map)
 # for moore_iter in range(1,6):
 #     dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
-#                      load_probabilities, calc_metrics, moore_iter, save_plots, L, 6, krange, N)
+#                      load_probabilities, calc_metrics, moore_iter, L, 6, krange, N)
 
+# # ~~~~~ Moore Algorithm validation test2 ~~~~~
 for D in drange:
+    with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K5.yaml'.format(name, D), 'r') as f:
+        machine = yaml.load(f)
+    K = len(machine.states)
     dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
-                    load_probabilities, calc_metrics, moore_iter, L, D, krange, N)
-    if save_plots:
-        sp.save_plot(parameter = 'cond_entropies', name = name, drange = drange,\
-                        krange = krange, ylabel = '$h_{10}$')
-        sp.save_plot(parameter = 'kldivergences', name = name, drange = drange,\
-                        krange = krange, ylabel = '$D_{10}$')
+                     load_probabilities, calc_metrics, moore_iter, L, D, range(K, K+1), N)
+
+
+# ~~~~~~~~ UNCOMMENT ~~~~~~~~~~~~~
+# for D in drange:
+#     dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
+#                     load_probabilities, calc_metrics, moore_iter, L, D, krange, N)
+#     if save_plots:
+#         sp.save_plot(parameter = 'cond_entropies', name = name, drange = drange,\
+#                         krange = krange, ylabel = '$h_{10}$')
+#         sp.save_plot(parameter = 'kldivergences', name = name, drange = drange,\
+#                         krange = krange, ylabel = '$D_{10}$')
 
 
 ## **** Plots section ****
