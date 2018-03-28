@@ -26,7 +26,7 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
             label = oedge[0]
             curr_morph[int(label)] = oedge[-1]
         morphs.append(curr_morph)
-
+    print('Morphs:\n{}'.format(morphs))
     kmeans = k(n_clusters = K, random_state = 0).fit(morphs)
     clusters = [[] for i in range(kmeans.n_clusters)]
     for i in range(len(morphs)):
@@ -50,6 +50,9 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
     clusters = [[] for i in range(kmeans.n_clusters)]
     for i in range(len(morphs)):
         clusters[kmeans.labels_[i]].append(machine.states[i])
+    # Fix empty clusters problem
+    clusters = [c for c in clusters if c]
+
     initial_pt = []
 
     for p in clusters:
