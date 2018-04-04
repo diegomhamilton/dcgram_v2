@@ -58,7 +58,9 @@ Description: This function will call the moore_iterations while the current
 partition is different from the partition obtained after a iteration. Once
 they are equal, the reduced partitions are returned.
 '''
-def moore(initial_partition, graph, simple=False):
+def moore(graph, initial_partition, simple=False):
+    iter_count = 0
+
     if simple:
         p = simplemoore(initial_partition, graph)
         return ps.PartitionSet(p)
@@ -66,8 +68,10 @@ def moore(initial_partition, graph, simple=False):
         current_partition = initial_partition
         while True:
             new_partition = moore_iteration(graph, current_partition.partitions)
+            iter_count += 1
             if len(current_partition.partitions) == len(new_partition):
-                return ps.PartitionSet(new_partition)
+                print('Moore finished with {} iterations'.format(iter_count))
+                return new_partition
             else:
                 current_partition = ps.PartitionSet(new_partition)
 
@@ -88,11 +92,13 @@ def moore_by_parts(graph, initial_partition, n_iter = -1):
     #By default, it applies the regular moore algorithm
     if n_iter == -1:
         current_partition = moore(graph, initial_partition)
+    if n_iter == 0:
+        return initial_partition
     else:
-        current_partition = initial_partition
+        current_partition = initial_partition.partitions
         for i in range(0, n_iter):
             current_partition = moore_iteration(graph, current_partition)
-    return current_partition
+    return ps.PartitionSet(current_partition)
 
 '''
 Name: moore_iteration
