@@ -26,7 +26,7 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
             label = oedge[0]
             curr_morph[int(label)] = oedge[-1]
         morphs.append(curr_morph)
-    print('Morphs:\n{}'.format(morphs))
+    # print('Morphs:\n{}'.format(morphs))
     kmeans = k(n_clusters = K, random_state = 0).fit(morphs)
     clusters = [[] for i in range(kmeans.n_clusters)]
     for i in range(len(morphs)):
@@ -64,7 +64,7 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
     initial_pt = ps.PartitionSet(initial_pt, alphabet = {0, 1, 2})
     final_pt = m.moore_by_parts(machine, initial_pt, n_iter = moore_iter)
 
-    with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/\dcgram_D{}_K{}{}.yaml'.format(name, D, K, moore_label), 'w') as f:
+    with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/dcgram_D{}_K{}{}.yaml'.format(name, D, K, moore_label), 'w') as f:
         yaml.dump(final_pt, f)
     new_pt = final_pt.redefine_partition()
 
