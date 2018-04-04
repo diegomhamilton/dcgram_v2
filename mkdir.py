@@ -14,3 +14,4 @@ def organize_folders(sequence, version = 'v1'):
             os.makedirs('{}/{}/dcgram'.format(new_path, f))
         if not os.path.exists('{}/{}/dmarkov'.format(new_path, f)):
             os.makedirs('{}/{}/dmarkov'.format(new_path, f)) 
+    os.makedirs(f'{new_path}/machines/dcgram/before_redefine')
