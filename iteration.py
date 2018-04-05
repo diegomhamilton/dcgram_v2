@@ -3,7 +3,7 @@ import yaml
 import save_plot as sp
 
 name = 'ternary_fading_channel'
-load_original_sequence = False
+load_original_sequence = True
 load_machines = False
 load_sequences = False
 load_probabilities = False
