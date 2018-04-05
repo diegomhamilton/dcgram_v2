@@ -14,7 +14,7 @@ save_plots = True
 drange = range(4,10)    # Range of machine's memory
 krange = range(4,8)     # Number of clusters for each machine with memory D
 N = drange[-1] + 1      # Probabilities must be calculated for subesquences with length up to N
-L = int(10e6)
+L = int(30e6)
 
 for D in drange:
     if (D != drange[0]):
