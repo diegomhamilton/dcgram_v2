@@ -22,11 +22,11 @@ for D in drange:
 
     dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
                     load_probabilities, calc_metrics, moore_iter, L, D, krange, N)
-    if save_plots:
-        sp.save_plot(parameter = 'cond_entropies', name = name, drange = drange,\
-                        krange = krange, ylabel = '$h_{10}$')
-        sp.save_plot(parameter = 'kldivergences', name = name, drange = drange,\
-                        krange = krange, ylabel = '$D_{10}$')
+if save_plots:
+    sp.save_plot(parameter = 'cond_entropies', name = name, drange = drange,\
+                    krange = krange, ylabel = '$h_{10}$')
+    sp.save_plot(parameter = 'kldivergences', name = name, drange = drange,\
+                    krange = krange, ylabel = '$D_{10}$')
 
 # # ~~~~~ Moore Algorithm validation test ~~~~~
 # # For D = 6, Moore takes 5 (logistic_map)
