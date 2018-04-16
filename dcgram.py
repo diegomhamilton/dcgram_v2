@@ -21,6 +21,7 @@ def DCGraM(name = 'ternary_even_shift', \
         moore_label = ''
     # **** Sequence initialization section ****
     if load_original_sequence:
+        print("~~~~~Calculating probabilities for original sequence~~~~~\n")
         # Load original sequence
         with open(f'../dcgram_files/{name}/original/original_len_{L}.yaml', 'r') as f:
             original_sequence = yaml.load(f)
@@ -35,6 +36,7 @@ def DCGraM(name = 'ternary_even_shift', \
                   , 'w') as f:
             yaml.dump(original_cond_probs, f)
     else:
+        print("~~~~~Loading probabilities for original sequence~~~~~\n")
         # Load sequence alphabet
         with open(f'../dcgram_files/{name}/original/alphabet.yaml', 'r') as f:
             alphabet = yaml.load(f)
@@ -83,11 +85,13 @@ def DCGraM(name = 'ternary_even_shift', \
                             'r') as f:
                     dcgram_sequences[K-1] = yaml.load(f)
         else:
+            print(f"~~~Generating D-Markov sequence for D={D}~~~\n")
             dmark_sequences = sg.generate_sequence(dmark_machines, L)
             with open(f'../dcgram_files/{name}/results/sequences/dmarkov/dmark_D{D}.yaml', \
                         'w') as f:
                 yaml.dump(dmark_sequences, f)
             for K in krange:
+                print(f"~~~Generating DCGraM sequence for D={D}, K={K}~~~\n")
                 dcgram_sequences[K-1] = sg.generate_sequence(dcgram_machines[K-1], L)
                 # print('\n\n\n\nGENERATE SEQUENCE K={}\n\n\n\n\n\n'.format(K))
 
@@ -106,16 +110,14 @@ def DCGraM(name = 'ternary_even_shift', \
         with open(f'../dcgram_files/{name}/results/probabilities/conditional/dmarkov/dmark_D{D}.yaml', \
                     'w') as f:
             yaml.dump(dmark_cond_probs, f)
-        with open(f'../dcgram_files/{name}/results/probabilities/conditional/dcgram/dcgram_D{D}_K{K}{moore_label}\
-                    .yaml', 'w') as f:
+        with open(f'../dcgram_files/{name}/results/probabilities/conditional/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
             yaml.dump(dcgram_cond_probs, f)
 
         for K in krange:
             # Computes probabilities
             dcgram_probs[K-1], alphabet = sa.calc_probs(dcgram_sequences[K-1], N)
             # Saves probabilities
-            with open(f'../dcgram_files/{name}/results/probabilities/dcgram/dcgram_D{D}_K{K}{moore_label}\
-                        .yaml', 'w') as f:
+            with open(f'../dcgram_files/{name}/results/probabilities/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
                 yaml.dump(dcgram_probs[K-1], f)
             # Computes conditional probabilities
             dcgram_cond_probs[K-1] = sa.calc_cond_probs(dcgram_probs[K-1], alphabet, N-1)

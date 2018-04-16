@@ -3,7 +3,7 @@ import yaml
 import save_plot as sp
 
 name = 'ternary_fading_channel'
-load_original_sequence = True
+load_original_sequence = False
 load_machines = False
 load_sequences = False
 load_probabilities = False
@@ -12,7 +12,7 @@ moore_iter = -1
 save_plots = True
 
 drange = range(4,10)    # Range of machine's memory
-krange = range(4,8)     # Number of clusters for each machine with memory D
+krange = range(5,8)     # Number of clusters for each machine with memory D
 N = drange[-1] + 1      # Probabilities must be calculated for subesquences with length up to N
 L = int(30e6)
 
@@ -22,11 +22,12 @@ for D in drange:
 
     dcgram.DCGraM(name, load_original_sequence, load_machines, load_sequences,\
                     load_probabilities, calc_metrics, moore_iter, L, D, krange, N)
+                    
 if save_plots:
     sp.save_plot(parameter = 'cond_entropies', name = name, drange = drange,\
-                    krange = krange, ylabel = '$h_{10}$')
+                    krange = krange, moore_iter = moore_iter, ylabel = '$h_{10}$')
     sp.save_plot(parameter = 'kldivergences', name = name, drange = drange,\
-                    krange = krange, ylabel = '$D_{10}$')
+                    krange = krange, moore_iter = moore_iter,ylabel = '$D_{10}$')
 
 # # ~~~~~ Moore Algorithm validation test ~~~~~
 # # For D = 6, Moore takes 5 (logistic_map)

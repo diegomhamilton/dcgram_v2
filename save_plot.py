@@ -2,11 +2,16 @@ import yaml
 import matplotlib.pyplot as plt
 
 def save_plot(parameter = 'cond_entropies', name = 'ternary_even_shift',\
-                drange = range(4,10), krange = range(2,8), title = 'Insert your title here', xlabel = 'Number of states', ylabel = ''):
+                drange = range(4,10), krange = range(2,8), moore_iter = -1, title = 'Insert your title here', xlabel = 'Number of states', ylabel = ''):
     dcgram_parameters = [[None] * len(drange) for i in range(krange[-1])]
     dcgram_states = [[None] * len(drange) for i in range(krange[-1])]
     dmark_parameters = [None] * len(drange)
     dmark_states = [None] * len(drange)
+
+    if moore_iter != -1:
+        moore_label = f'_moore_{moore_iter}_iter'
+    else:
+        moore_label = ''
 
     for D in drange:
         with open('../dcgram_files/{}/results/{}/dmarkov/dmark_D{}.yaml'.format(name, parameter, D), 'r') as f:
@@ -16,9 +21,9 @@ def save_plot(parameter = 'cond_entropies', name = 'ternary_even_shift',\
             dmark_states.append(len(machine.states))
 
         for K in krange:
-            with open('../dcgram_files/{}/results/{}/dcgram/dcgram_D{}_K{}.yaml'.format(name, parameter, D, K), 'r') as f:
+            with open('../dcgram_files/{}/results/{}/dcgram/dcgram_D{}_K{}{}.yaml'.format(name, parameter, D, K, moore_label), 'r') as f:
                 dcgram_parameters[K-1].append(yaml.load(f))
-            with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}.yaml'.format(name, D, K), 'r') as f:
+            with open('../dcgram_files/{}/results/machines/dcgram/dcgram_D{}_K{}{}.yaml'.format(name, D, K, moore_label), 'r') as f:
                 machine = yaml.load(f)
                 dcgram_states[K-1].append(len(machine.states))
     plt.plot(dmark_states, dmark_parameters, 'g^-', label = 'D-Markov, D de 4 a 9', linewidth = 1.0)

@@ -71,7 +71,7 @@ def moore(graph, initial_partition, simple=False):
             iter_count += 1
             if len(current_partition.partitions) == len(new_partition):
                 print('Moore finished with {} iterations'.format(iter_count))
-                return new_partition
+                return ps.PartitionSet(new_partition)
             else:
                 current_partition = ps.PartitionSet(new_partition)
 
@@ -92,13 +92,14 @@ def moore_by_parts(graph, initial_partition, n_iter = -1):
     #By default, it applies the regular moore algorithm
     if n_iter == -1:
         current_partition = moore(graph, initial_partition)
-    if n_iter == 0:
+    elif n_iter == 0:
         return initial_partition
     else:
         current_partition = initial_partition.partitions
         for i in range(0, n_iter):
             current_partition = moore_iteration(graph, current_partition)
-    return ps.PartitionSet(current_partition)
+        current_partition = ps.PartitionSet(current_partition)
+    return current_partition
 
 '''
 Name: moore_iteration

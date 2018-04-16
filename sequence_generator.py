@@ -23,7 +23,7 @@ def generate_sequence(machine, L):
         if (state.name == curr_state_name):
             curr_state = state
 
-    #Generate a 10e7 length sequence from DMarkov with D = curr_d
+    #Generate a L length sequence from DMarkov with D = curr_d
     for i in range(L):
         # Set data parameters
         labels = [outedge[0] for outedge in curr_state.outedges]
@@ -32,6 +32,7 @@ def generate_sequence(machine, L):
         probabilities = [int(p * 10e16) for p in probabilities]
         # Chooses next state
         label = random.choices(labels, probabilities)[0]
+        # print(f'Labe = {label}')
         sequence = sequence + label
         # Goes to next state
         curr_state_name = [outedge[1] for outedge in curr_state.outedges if \

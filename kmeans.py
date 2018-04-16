@@ -48,7 +48,10 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
     #----------------------------------------------------------------------------------
     #MOORE
     clusters = [[] for i in range(kmeans.n_clusters)]
+    print(f"Clusterization check")
     for i in range(len(morphs)):
+        state_idx = kmeans.labels_[i]
+        print(f"\tCenter: {kmeans.cluster_centers_[state_idx]}, Outedge: {machine.states[i].outedges}")
         clusters[kmeans.labels_[i]].append(machine.states[i])
     # Fix empty clusters problem
     clusters = [c for c in clusters if c]

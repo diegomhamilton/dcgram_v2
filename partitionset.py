@@ -74,7 +74,6 @@ class PartitionSet:
                     # #DEBUG
                     # print('new-oedges={}'.format((label, dest, probs)))
             s.outedges = new_oedges
-            print()
         new_pt = pg.ProbabilisticGraph(new_states, alphabet)
 
         return new_pt
