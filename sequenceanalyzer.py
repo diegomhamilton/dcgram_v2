@@ -1,5 +1,36 @@
 import numpy as np
 import pandas as pd
+#debug
+from timeit import default_timer as timer
+
+def new_calc_probs(X, L):
+    probabilities = []
+    alphabet = set([c for c in X]) # computes all differents characters in sequence 
+    init_time = timer()
+    max_probs = {}
+    for i in range(0, len(X) - (L - 1)):
+        curr_word = ''.join(map(str, X[i:(i+L)+1]))
+        if not curr_word in max_probs.keys():
+            max_probs[curr_word] = 1
+        else:
+            max_probs[curr_word] += 1
+    for key in max_probs.keys():
+        max_probs[key] /= float(len(X) - (L-1))
+    probabilities.insert(0, max_probs)
+
+    for l in range(L, 1, -1):
+        node_prob = {}
+        for key in max_probs.keys():
+            sub_word = key[0:-1]
+            sub_prob = max_probs.pop(key, 0)
+            for c in alphabet:
+                comp_word = sub_word + str(c)
+                sub_prob += max_probs.pop(comp_word, 0)
+            node_prob[sub_word] = sub_prob
+        probabilities.insert(0, node_prob)
+    print(f'took {timer()-init_time} secs')
+    return probabilities, alphabet
+
 
 '''
 Name: calc_probs
