@@ -105,7 +105,7 @@ def DCGraM(name = 'ternary_even_shift', \
          'w') as f:
             yaml.dump(dmark_probs, f)
         # Computes conditional probabilities
-        dmark_cond_probs = sa.calc_cond_probs(dmark_probs, alphabet, N-1)
+        dmark_cond_probs = sa.calc_cond_probs(dmark_probs, alphabet, N)
         # Saves conditional probabilities
         with open(f'../dcgram_files/{name}/results/probabilities/conditional/dmarkov/dmark_D{D}.yaml', \
                     'w') as f:
@@ -120,7 +120,7 @@ def DCGraM(name = 'ternary_even_shift', \
             with open(f'../dcgram_files/{name}/results/probabilities/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
                 yaml.dump(dcgram_probs[K-1], f)
             # Computes conditional probabilities
-            dcgram_cond_probs[K-1] = sa.calc_cond_probs(dcgram_probs[K-1], alphabet, N-1)
+            dcgram_cond_probs[K-1] = sa.calc_cond_probs(dcgram_probs[K-1], alphabet, N)
             # Saves conditional probabilities
             with open(f'../dcgram_files/{name}/results/probabilities/conditional/dcgram/dcgram_D{D}_K{K}{moore_label}\
                         .yaml', 'w') as f:
@@ -143,13 +143,13 @@ def DCGraM(name = 'ternary_even_shift', \
 
     # **** Data analysis section ****
     if calc_metrics:
-        original_entropy = sa.calc_cond_entropy(original_probs, original_cond_probs, 9)[-1]
+        original_entropy = sa.calc_cond_entropy(original_probs, original_cond_probs, 10)[-1]
 
         with open('../dcgram_files/{}/results/cond_entropies/original_v1.yaml'\
                     .format(name), 'w') as f:
             yaml.dump(original_entropy, f)
 
-        dmark_entropy = sa.calc_cond_entropy(dmark_probs, dmark_cond_probs, 9)[-1]
+        dmark_entropy = sa.calc_cond_entropy(dmark_probs, dmark_cond_probs, 10)[-1]
         with open('../dcgram_files/{}/results/cond_entropies/dmarkov/dmark_D{}.yaml'\
                     .format(name, D), 'w') as f:
             yaml.dump(dmark_entropy, f)
@@ -168,7 +168,7 @@ def DCGraM(name = 'ternary_even_shift', \
             curr_probs = dcgram_probs[K-1]
             curr_cond_probs = dcgram_cond_probs[K-1]
 
-            dcgram_entropy = sa.calc_cond_entropy(curr_probs, curr_cond_probs, 9)[-1]
+            dcgram_entropy = sa.calc_cond_entropy(curr_probs, curr_cond_probs, 10)[-1]
             with open('../dcgram_files/{}/results/cond_entropies/dcgram/dcgram_D{}_K{}{}.yaml'\
                         .format(name, D, K, moore_label), 'w') as f:
                 yaml.dump(dcgram_entropy, f)
