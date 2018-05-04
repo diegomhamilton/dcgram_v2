@@ -3,13 +3,14 @@ import pandas as pd
 #debug
 from timeit import default_timer as timer
 
-def new_calc_probs(X, L):
+def calc_probs(X, L):
+    print(f'Calculating probabilities for words with length {L} ...')
     probabilities = []
     alphabet = set([c for c in X]) # computes all differents characters in sequence 
     max_probs = {}
     init_time = timer()
-    for i in range(0, len(X) - (L - 1)):
-        curr_word = ''.join(map(str, X[i:(i+L)+1]))
+    for i in range(0, len(X) - L):
+        curr_word = ''.join(map(str, X[i:(i+L)]))
         if not curr_word in max_probs.keys():
             max_probs[curr_word] = 1
         else:
@@ -20,25 +21,26 @@ def new_calc_probs(X, L):
     probabilities.insert(0, max_probs)
 
     for l in range(L, 1, -1):
+        print(f'Calculating probabilities for words with length {l-1} ...')
         node_prob = {}
         aux_probs = max_probs.copy()
             
         for key in max_probs.keys():
             sub_word = key[0:-1]
             sub_prob = aux_probs.pop(key, 0)
-            print(f'word:{key}; curr_prob:{sub_prob}')
+            # print(f'word:{key}; curr_prob:{sub_prob}')
             for c in alphabet:
                 comp_word = sub_word + str(c)
                 sub_prob += aux_probs.pop(comp_word, 0)
-                print(f'\tword:{comp_word}; curr_prob:{sub_prob}')
-            print(f'\tsub_word:{sub_word}')
+                # print(f'\tword:{comp_word}; curr_prob:{sub_prob}')
+            # print(f'\tsub_word:{sub_word}')
             if not sub_word in node_prob.keys():
                 node_prob[sub_word] = sub_prob
-        print(node_prob)
+        # print(node_prob)
         probabilities.insert(0, node_prob)
         max_probs = node_prob.copy()
-    print(f'took {timer()-init_time} secs')
-    return probabilities, alphabet
+    # print(f'took {timer()-init_time} secs')
+    return [probabilities, alphabet]
 
 
 '''
@@ -59,7 +61,7 @@ Description:
     records each individual symbol that appears and stores it as the
     sequence's alphabet.
 '''
-def calc_probs(X, L):
+def old_calc_probs(X, L):
     #Output lists, initialized as empty lists:
     probabilities = []
     alphabet = []
