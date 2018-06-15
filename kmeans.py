@@ -48,10 +48,10 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
     #----------------------------------------------------------------------------------
     #MOORE
     clusters = [[] for i in range(kmeans.n_clusters)]
-    print(f"Clusterization check")
+    # print(f"Clusterization check")
     for i in range(len(morphs)):
         state_idx = kmeans.labels_[i]
-        print(f"\tCenter: {kmeans.cluster_centers_[state_idx]}, Outedge: {machine.states[i].outedges}")
+        # print(f"\tCenter: {kmeans.cluster_centers_[state_idx]}, Outedge: {machine.states[i].outedges}")
         clusters[kmeans.labels_[i]].append(machine.states[i])
     # Fix empty clusters problem
     clusters = [c for c in clusters if c]
@@ -64,8 +64,9 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
             partition.add_to_partition(state)
         initial_pt.append(partition)
 
-    initial_pt = ps.PartitionSet(initial_pt, alphabet = {0, 1, 2})
+    initial_pt = ps.PartitionSet(initial_pt, alphabet = machine.alphabet)
     final_pt = m.moore_by_parts(machine, initial_pt, n_iter = moore_iter)
+    final_pt.alphabet = machine.alphabet
 
     with open('../dcgram_files/{}/results/machines/dcgram/before_redefine/dcgram_D{}_K{}{}.yaml'.format(name, D, K, moore_label), 'w') as f:
         yaml.dump(final_pt, f)

@@ -11,12 +11,15 @@ A Partition Set is a collection of partition, which, in turn are collections
 of states which share some common feature. From a deterministic partition set
 it is possible to recover a graph.
 '''
-
+# To do:
+#   review redefine_partition
+# Changes:
+#   alphabet as attribute, redefine_partition()
 
 class PartitionSet:
     def __init__(self, partitions, alphabet = []):
         self.partitions = partitions
-        alphabet = alphabet
+        self.alphabet = alphabet
     # Not in current use:
     # def update_partitions_edges(self):
     #    for part in self.partitions:
@@ -50,31 +53,26 @@ class PartitionSet:
     def redefine_partition(self):
         new_states = [pst.ProbabilisticState(i) for i in range(len(self.partitions))]
 
-        alphabet = set([])
-
         for s in new_states:
             pt_copy = self.partitions[s.name]
-            #CHANGE THIS (PASS ALPHABET AS ARG)
-            all_oedges = pt_copy.fill_outedges({'0', '1', '2'})
-            # print('all_oedges={}'.format(all_oedges))
+            all_oedges = pt_copy.fill_outedges(self.alphabet)
+            # DEBUG print('all_oedges={}'.format(all_oedges))
             random_oedges = random.choice(pt_copy.outedges)
-            # print('random_oedges={}'.format(random_oedges))
+            # DEBUG print('random_oedges={}'.format(random_oedges))
             new_oedges = []
             i = 0
             for oedge in random_oedges:
-                # print('oedge={}'.format(oedge))
+                # DEBUG print('oedge={}'.format(oedge))
                 label = oedge[0]
-                alphabet.add(label)
                 dest = self.find_in_partition(oedge[1])
                 curr_probs = [morph[int(label)][-1] for morph in all_oedges if morph[int(label)][-1] != 0]
-                # print('probs = {}'.format(curr_probs))
+                # DEBUG print('probs = {}'.format(curr_probs))
                 if curr_probs:
                     probs = np.mean(curr_probs)
                     new_oedges.append((label, dest, probs))
-                    # #DEBUG
-                    # print('new-oedges={}'.format((label, dest, probs)))
+                    # DEBUG print('new-oedges={}'.format((label, dest, probs)))
             s.outedges = new_oedges
-        new_pt = pg.ProbabilisticGraph(new_states, alphabet)
+        new_pt = pg.ProbabilisticGraph(new_states, self.alphabet)
 
         return new_pt
 
