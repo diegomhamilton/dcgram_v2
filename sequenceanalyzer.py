@@ -127,7 +127,7 @@ def calc_cond_probs(probabilities, alphabet, L):
         conditional_probabilities = [probabilities[0]]
         #This loop calculates the conditional probabilities of subsquences of
         #length greater than 0 given each symbol in the alphabet:
-        for l in range(0, L):
+        for l in range(0, L-1):
             print("Calculating conditional probabilities of subsequences of length: " + str(l+1))
             d = {}
             l1 = probabilities[l]
