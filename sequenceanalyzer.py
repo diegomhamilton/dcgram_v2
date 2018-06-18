@@ -103,7 +103,9 @@ def old_calc_probs(X, L):
 '''
 Name: calc_cond_probs
 Input:
-    *L: maximum sub-sequence length to be analyzed.
+    *probabilities: list of dictionaries containing all sub-sequences probabilities in a sequence;
+    *alphabet: set of symbols that appear in sub-sequences of probabilities;
+    *L: maximum sub-sequence length to be analyzed;
 Output:
     *conditional_probabilities: a list of dictionaries. Each dictionary
      contains keys that are of the form:
@@ -136,6 +138,58 @@ def calc_cond_probs(probabilities, alphabet, L):
                 for a in alphabet:
                     cond = a + "|" + s
                     t = s + a
+                    if t in l2.keys():
+                        d[cond] = l2[t]/l1[s]
+                    else:
+                        d[cond] = 0.0
+            conditional_probabilities.append(d)
+    else:
+        print("Probabilities not computed.")
+        print("Run calc_probs function before this one.")
+    print("*****************")
+    print("Conditional probabilities calculated!")
+    print("*****************")
+    return conditional_probabilities
+
+'''
+Name: calc_cond_probs_n
+Input:
+    *probabilities: list of dictionaries containing all sub-sequences probabilities in a sequence;
+    *alphabet: set of symbols that appear in sub-sequences of probabilities;
+    *L: maximum sub-sequence length to be analyzed;
+    *n: legth of word to be analyzed.
+Output:
+    *conditional_probabilities: a list of dictionaries. Each dictionary
+     contains keys that are of the form:
+     word|subsequence
+     meaning the probability of "word" occuring after that subsequence.
+     There is one dictionary for each length of subsequence.
+Description:
+    Calculates the probability of each symbol in alphabet occuring each
+    subsequence in probabilities and create a similiar dictionary for those
+    conditional probabilities.
+'''
+def calc_cond_probs_n(probabilities, alphabet, L, n):
+    #Output initialized as empty list:
+    conditional_probabilities = []
+    print("Calculating subsequence conditional probabilities")
+    print(f"L = {L}, n = {n}")
+    if len(probabilities) > L+n:
+        #The first element, i.e. the probabilities of each symbol given the
+        #empty string is just the probabilities of the occurence of those
+        #symbols, i.e. the first element of the probabilities list.
+        conditional_probabilities = [probabilities[0]]
+        #This loop calculates the conditional probabilities of subsquences of
+        #length greater than 0 given each symbol in the alphabet:
+        for l in range(0, L-1):
+            print("Calculating conditional probabilities of subsequences of length: " + str(l+1))
+            d = {}
+            l1 = probabilities[l]
+            l2 = probabilities[l + n] #probabilities for words with length [(l+1) +n]
+            for s in l1.keys():
+                for w in probabilities[n-1].keys(): # probabilities for words with length n
+                    cond = w + "|" + s
+                    t = s + w
                     if t in l2.keys():
                         d[cond] = l2[t]/l1[s]
                     else:
