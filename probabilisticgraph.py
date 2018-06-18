@@ -2,6 +2,7 @@ import graph
 import probabilisticstate as pst
 from scipy import stats
 from random import random as rd
+
 '''
 Probabilistic version of a graph. It uses probabilistic states instead of 
 common states. This allows for a method that computes statistical tests of two
@@ -18,7 +19,7 @@ class ProbabilisticGraph(graph.Graph):
                 s = pst.ProbabilisticState(s.name, s.outedges)
                 p_states.append(s)
         graph.Graph.__init__(self, p_states, alphabet, path)
-    
+
     '''
     Name: compare_morphs
     Input:
