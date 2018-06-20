@@ -21,7 +21,7 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
 
     # Normalize morphs
     for oedges in all_oedges:
-        curr_morph = [0, 0, 0]
+        curr_morph = [0] * len(machine.alphabet)
         for oedge in oedges:
             label = oedge[0]
             curr_morph[int(label)] = oedge[-1]
