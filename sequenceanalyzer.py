@@ -174,14 +174,14 @@ def calc_cond_probs_n(probabilities, alphabet, L, n):
     conditional_probabilities = []
     print("Calculating subsequence conditional probabilities")
     print(f"L = {L}, n = {n}")
-    if len(probabilities) > L+n:
+    if len(probabilities) >= L+n:
         #The first element, i.e. the probabilities of each symbol given the
         #empty string is just the probabilities of the occurence of those
         #symbols, i.e. the first element of the probabilities list.
         conditional_probabilities = [probabilities[0]]
         #This loop calculates the conditional probabilities of subsquences of
         #length greater than 0 given each symbol in the alphabet:
-        for l in range(0, L-1):
+        for l in range(0, L):
             print("Calculating conditional probabilities of subsequences of length: " + str(l+1))
             d = {}
             l1 = probabilities[l]
