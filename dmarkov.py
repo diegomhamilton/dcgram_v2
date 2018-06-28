@@ -8,15 +8,16 @@ g. It takes its states with length D, extracts them and connects them in a
 D-Markov fashion, creating a new graph.
 '''
 class DMarkov(pg.ProbabilisticGraph):
-    def __init__(self, p_cond, D, alphabet = []):
+    def __init__(self, p_cond, D, alphabet = [], label_size = 1):
         p_curr = p_cond[D] #Probabilities of length D words
         #Generates all possible state names with length D from alphabet letters
         state_names = [''.join(i) for i in itertools.product(alphabet, repeat = D)]
+        label_names = [''.join(i) for i in itertools.product(alphabet, repeat = label_size)]
         d_states = []
         for name in state_names:
             outedges = []
-            for a in alphabet:
-                dest = name[1:] + a
+            for a in label_names:
+                dest = name[label_size:] + a
                 key = a + '|' + name
                 if key in p_curr.keys() and p_curr[key] != 0:
                     prob = p_curr[a + '|' + name]
