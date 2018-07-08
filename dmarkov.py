@@ -13,6 +13,13 @@ class DMarkov(pg.ProbabilisticGraph):
         #Generates all possible state names with length D from alphabet letters
         state_names = [''.join(i) for i in itertools.product(alphabet, repeat = D)]
         label_names = [''.join(i) for i in itertools.product(alphabet, repeat = label_size)]
+        #Creates a dictionary of type label_name: index for faster index access
+        label_names.sort()
+        self.index_labels = {}
+        i = 0
+        for w in label_names:
+            self.index_labels[w] = i
+            i += 1
         d_states = []
         for name in state_names:
             outedges = []
