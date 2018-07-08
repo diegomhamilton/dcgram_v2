@@ -21,10 +21,10 @@ def clusterize(machine, L, D, K, moore_iter = -1, name = 'ternary_even_shift', s
 
     # Normalize morphs
     for oedges in all_oedges:
-        curr_morph = [0] * len(machine.alphabet)
+        curr_morph = [0] * len(machine.index_labels)
         for oedge in oedges:
             label = oedge[0]
-            curr_morph[int(label)] = oedge[-1]
+            curr_morph[machine.index_labels[label]] = oedge[-1]
         morphs.append(curr_morph)
     # print('Morphs:\n{}'.format(morphs))
     kmeans = k(n_clusters = K, random_state = 0).fit(morphs)
