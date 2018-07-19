@@ -1,6 +1,6 @@
-from state import State
+from probabilisticstate import ProbabilisticState
 
-class Partition(State):
+class Partition(ProbabilisticState):
     '''
     A partition is a state created by merging states together after it is
     computed they represent an equivalent state. It has the same attributes as
@@ -56,14 +56,17 @@ class Partition(State):
                     self.outedges.remove(self.outedges[i])
             i += 1
 
-    #returns all outedges completed with outedges that have p = 0
-    def fill_outedges(self, alphabet):
+    # returns all outedges completed with outedges that have p = 0
+    def fill_outedges(self, machine):
         new_oedges = []
+        label_names = machine.label_names
+        index_labels = machine.index_labels
+
         for oedge in self.outedges:
-            new_e = [None] * len(alphabet)
-            for label in alphabet:
-                new_e[int(label)] = (label, -1, 0.0)
+            new_e = [None] * len(index_labels)
+            for label in label_names:
+                new_e[index_labels[label]] = (label, -1, 0.0)
             for e in oedge:
-                new_e[int(e[0])] = e
+                new_e[index_labels[e[0]]] = e
             new_oedges.append(new_e)
         return new_oedges
