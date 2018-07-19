@@ -10,6 +10,16 @@ class ProbabilisticState(state.State):
     def __init__(self, name, outedges = []):
         state.State.__init__(self, name, outedges)
 
+#fill outedges sorted with outedges that have p = 0
+    def full_outedges(self, alphabet):
+        new_e = [None] * len(alphabet)
+
+        for label in alphabet:
+            new_e[int(label)] = (label, -1, 0.0)
+        for e in self.outedges:
+            new_e[int(e[0])] = e
+        self.outedges = new_e
+
     '''
     Name: prob_to_next_state
     Input:
