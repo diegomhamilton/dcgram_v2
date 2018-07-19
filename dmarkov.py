@@ -12,18 +12,18 @@ class DMarkov(pg.ProbabilisticGraph):
         p_curr = p_cond[D] #Probabilities of length D words
         #Generates all possible state names with length D from alphabet letters
         state_names = [''.join(i) for i in itertools.product(alphabet, repeat = D)]
-        label_names = [''.join(i) for i in itertools.product(alphabet, repeat = label_size)]
+        self.label_names = [''.join(i) for i in itertools.product(alphabet, repeat = label_size)]
         #Creates a dictionary of type label_name: index for faster index access
-        label_names.sort()
+        self.label_names.sort()
         self.index_labels = {}
         i = 0
-        for w in label_names:
+        for w in self.label_names:
             self.index_labels[w] = i
             i += 1
         d_states = []
         for name in state_names:
             outedges = []
-            for a in label_names:
+            for a in self.label_names:
                 dest = name[label_size:] + a
                 key = a + '|' + name
                 if key in p_curr.keys() and p_curr[key] != 0:
