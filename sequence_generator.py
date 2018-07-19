@@ -15,7 +15,7 @@ Description:
     Starts with an predetermined state (all zeroes) and iterates L times,
     choosing next state in accord with labels probabilities.
 '''
-def generate_sequence(machine, L):
+def generate_sequence(machine, L, label_size = 1):
     sequence = ''
     # Starts in machine's first state
     curr_state_name = machine.states[0].name
@@ -25,7 +25,7 @@ def generate_sequence(machine, L):
             curr_state = state
 
     #Generate a L length sequence from DMarkov with D = curr_d
-    for i in range(L):
+    for i in range(L/label_size):
         # Set data parameters
         labels = [outedge[0] for outedge in curr_state.outedges]
         probabilities = [outedge[-1] for outedge in curr_state.outedges]
