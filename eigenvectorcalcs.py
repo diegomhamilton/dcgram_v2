@@ -1,5 +1,5 @@
 import numpy as np
-from numpy.linalg import eig
+from scipy.linalg import eig
 
 def near(a, b, rtol = 1e-5, atol = 1e-8):
     return np.abs(a-b)<(atol+rtol*np.abs(b))
@@ -19,5 +19,6 @@ def trans_prob_matrix(machine):
 
 def occup_vector(machine):
     P = trans_prob_matrix(machine)
-    values, vectors = eig(P)
-    return vectors[near(values, 1)]
+    values, vectors = eig(P, right = False, left = True)
+    vectors = np.matrix.transpose(vectors)
+    return vectors[near(values, 1)][0]
