@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.preprocessing import normalize
 import pandas as pd
 #debug
 from timeit import default_timer as timer
@@ -276,6 +277,40 @@ def calc_kldivergence(seq_probs, base_probs, K):
     print("Kullback-Leibler divergence calculated!")
     print("*****************")
     return kldivergence
+
+'''
+Name: calc_occup_vector
+Input:
+    *machine: group of states to be analyzed.
+    *sequence: sequence of symbols used in the states transitions of the machine.
+    *N: length of subsequence f
+        st_counter[st_index] += 1rom sequence used in the analysis.
+Output:
+    *occup_vector: occupation vector of the machine obtained empirically.
+Description:
+    Calculates the Occupation Vector of the machine executing state transitions
+    based on a sequence of symbols. The number of visitations per state is stored
+    and then calculated the occupation of each state.
+    Currently supports only 1-sized labels.
+'''
+def calc_occup_vector(machine, sequence, N):
+    states = machine.states
+    st_counter = [0 for i in machine.states]
+    st_index = 0
+    for label in sequence[:N]:
+        cur_st = states[st_index]
+        cur_oedges = cur_st.outedges
+        for oedge in cur_oedges:
+            if oedge[0] == label:
+                st_index = oedge[1]
+                break
+            #decide action if label doesn't exist in current state
+            st_index = cur_oedges[0][1]
+        st_counter[st_index] += 1
+    st_counter = np.array(st_counter)
+    occup_vector = normalize(st_counter[:,np.newaxis], norm='l1', axis=0).ravel()
+
+    return occup_vector
 
 def calc_euclidian_distance(seq_probs, base_probs, K):
     euclidian_distance = 0
