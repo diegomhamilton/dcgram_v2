@@ -10,7 +10,7 @@ import random
 import sequence_generator as sg
 
 
-def clusterize(machine, L, D, K, label_size = 1, moore_iter = -1, \
+def clusterize(machine, L, D, K, moore_iter = -1, \
                 name = 'ternary_even_shift', save_plot = True):
     all_oedges = [state.outedges for state in machine.states]
     morphs = []
@@ -44,7 +44,7 @@ def clusterize(machine, L, D, K, label_size = 1, moore_iter = -1, \
         # plt.title('Agrupamento de morphs para D = {}, K = {}'.format(D, K))
         plt.ylabel('$P(0)$')
         plt.xlabel('$P(1)$')
-        plt.savefig(f'../dcgram_files/{name}/results/plots/kmeans_dmark_D{D}_n{label_size}_K{K}_clusters{moore_label}.png')
+        plt.savefig(f'../dcgram_files/{name}/results/plots/kmeans_dmark_D{D}_K{K}_clusters{moore_label}.png')
         plt.gcf().clear()
     #----------------------------------------------------------------------------------
     #MOORE
@@ -68,11 +68,11 @@ def clusterize(machine, L, D, K, label_size = 1, moore_iter = -1, \
     initial_pt = ps.PartitionSet(initial_pt)
     final_pt = m.moore_by_parts(machine, initial_pt, n_iter = moore_iter)
 
-    with open(f'../dcgram_files/{name}/results/machines/dcgram/before_redefine/dcgram_D{D}_n{label_size}_K{K}{moore_label}.yaml', 'w') as f:
+    with open(f'../dcgram_files/{name}/results/machines/dcgram/before_redefine/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
         yaml.dump(final_pt, f)
     new_pt = final_pt.redefine_partition(machine)
 
-    with open(f'../dcgram_files/{name}/results/machines/dcgram/dcgram_D{D}_n{label_size}_K{K}{moore_label}.yaml'\
+    with open(f'../dcgram_files/{name}/results/machines/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml'\
                 , 'w') as f:
         yaml.dump(new_pt, f)
 
