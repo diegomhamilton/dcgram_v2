@@ -10,19 +10,19 @@ def calc_probs(X, L):
     alphabet = set([c for c in X]) # computes all differents characters in sequence 
     max_probs = {}
     init_time = timer()
-    for i in range(0, len(X) - L):
-        curr_word = ''.join(map(str, X[i:(i+L)]))
+    for i in range(0, len(X) - (L+1)):
+        curr_word = ''.join(map(str, X[i:(i+(L+1))]))
         if not curr_word in max_probs.keys():
             max_probs[curr_word] = 1
         else:
             max_probs[curr_word] += 1
     for key in max_probs.keys():
         # max_probs[key] /= float(len(X))
-        max_probs[key] /= float(len(X) - (L-1))
+        max_probs[key] /= float(len(X) - (L))
     probabilities.insert(0, max_probs)
 
-    for l in range(L, 1, -1):
-        print(f'Calculating probabilities for words with length {l-1} ...')
+    for l in range(L+1, 1, -1):
+        print(f'Calculating probabilities for words with length {l} ...')
         node_prob = {}
         aux_probs = max_probs.copy()
             
@@ -130,7 +130,7 @@ def calc_cond_probs(probabilities, alphabet, L):
         conditional_probabilities = [probabilities[0]]
         #This loop calculates the conditional probabilities of subsquences of
         #length greater than 0 given each symbol in the alphabet:
-        for l in range(0, L-1):
+        for l in range(0, L):
             print("Calculating conditional probabilities of subsequences of length: " + str(l+1))
             d = {}
             l1 = probabilities[l]
@@ -294,22 +294,30 @@ Description:
     Currently supports only 1-sized labels.
 '''
 def calc_occup_vector(machine, sequence, N):
-    states = machine.states
-    st_counter = [0 for i in machine.states]
-    st_index = 0
-    for label in sequence[:N]:
-        cur_st = states[st_index]
-        cur_oedges = cur_st.outedges
-        for oedge in cur_oedges:
-            if oedge[0] == label:
-                st_index = oedge[1]
-                break
-            #decide action if label doesn't exist in current state
-            st_index = cur_oedges[0][1]
-        st_counter[st_index] += 1
-    st_counter = np.array(st_counter)
-    occup_vector = normalize(st_counter[:,np.newaxis], norm='l1', axis=0).ravel()
-
+    for i in range(len(machine.states)):
+        states = machine.states
+        st_counter = [0 for j in machine.states]
+        st_index = i
+        erro = 0
+        for label in sequence[:N]:
+            cur_st = states[st_index]
+            cur_oedges = cur_st.outedges
+            for oedge in cur_oedges:
+                if oedge[0] == label:
+                    st_index = oedge[1]
+                    break
+                #decide action if label doesn't exist in current state
+            if not(oedge[0] == label):
+                erro += 1
+                st_index = cur_oedges[0][1]
+            st_counter[st_index] += 1
+        st_counter = np.array(st_counter)
+        #print(erro)
+        occup_vector = normalize(st_counter[:,np.newaxis], norm='l1', axis=0).ravel()
+        #print(occup_vector)
+        #print()
+        if not erro:
+            return occup_vector
     return occup_vector
 
 def calc_euclidian_distance(seq_probs, base_probs, K):
