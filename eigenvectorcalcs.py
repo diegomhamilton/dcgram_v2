@@ -18,10 +18,10 @@ def trans_prob_matrix(machine):
             P[cur_st][next_st] += oedg[-1]
     return P
 
-def occup_vector(machine, P):
-    #P = trans_prob_matrix(machine)
+def occup_vector(machine):
+    P = trans_prob_matrix(machine)
     values, vectors = eig(P, right = False, left = True)
     vectors = np.matrix.transpose(vectors)
-    occup = vectors[near(values, 1)][0]
+    occup = vectors[near(values, 1, 0.02)][0]
     normalized_occup = normalize(occup[:,np.newaxis], norm='l1', axis=0).ravel()
     return normalized_occup
