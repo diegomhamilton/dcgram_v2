@@ -51,15 +51,29 @@ def clusterize(machine, L, D, K, moore_iter = -1, \
     clusters = [[] for i in range(kmeans.n_clusters)]
     # print(f"Clusterization check")
     for i in range(len(morphs)):
-        state_idx = kmeans.labels_[i]
+        cluster_index = kmeans.labels_[i]
         # print(f"\tCenter: {kmeans.cluster_centers_[state_idx]}, Outedge: {machine.states[i].outedges}")
-        clusters[kmeans.labels_[i]].append(machine.states[i])
+        clusters[cluster_index].append(machine.states[i])
     # Fix empty clusters problem
     clusters = [c for c in clusters if c]
+    # Split cluster if two or more states have differente outedges
 
+    new_clusters = []
+
+    for c in clusters:
+        new_clusters_dict = dict()
+        for st in c:
+            key = ''.join([oedge[0] for oedge in st.outedges])
+            if key in new_clusters_dict:
+                new_clusters_dict[key].append(st)
+            else:
+                new_clusters_dict[key] = [st]
+        for new_c in new_clusters_dict.values():
+            new_clusters.append(new_c)
+ 
     initial_pt = []
 
-    for p in clusters:
+    for p in new_clusters:
         partition = pt.Partition()
         for state in p:
             partition.add_to_partition(state)
