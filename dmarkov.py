@@ -9,7 +9,7 @@ D-Markov fashion, creating a new graph.
 '''
 class DMarkov(pg.ProbabilisticGraph):
     def __init__(self, p_cond, D, alphabet = [], label_size = 1):
-        p_curr = p_cond[D] #Probabilities of length D words
+        p_curr = p_cond[D] #Conditional probabilities of length D words
         #Generates all possible state names with length D from alphabet letters
         state_names = [''.join(i) for i in itertools.product(alphabet, repeat = D)]
         self.label_names = [''.join(i) for i in itertools.product(alphabet, repeat = label_size)]
