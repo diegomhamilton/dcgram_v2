@@ -154,10 +154,10 @@ class Graph:
             for outedge in outedges:  # Goes through each outedge in the outedge list
                 # Checks if the destination state of the current outedge is already
                 # in the list:
-                if outedge[1]:
-                    if outedge[1].name not in reachable_states:
+                if str(outedge[1]):
+                    if str(outedge[1]) not in reachable_states:
                         # If it is not, it is considered as a new reachable state.
-                        reachable_states.append(outedge[1].name)
+                        reachable_states.append(self.state_named(outedge[1]))
 
         # A new list of states is created only with states whose names are in
         # reachableStates
