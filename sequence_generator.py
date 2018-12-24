@@ -25,7 +25,7 @@ def generate_sequence(machine, L, label_size = 1):
             curr_state = state
 
     #Generate a L length sequence from DMarkov with D = curr_d
-    for i in range(L/label_size):
+    for i in range(int(L/label_size)):
         # Set data parameters
         labels = [outedge[0] for outedge in curr_state.outedges]
         probabilities = [outedge[-1] for outedge in curr_state.outedges]
