@@ -5,7 +5,6 @@ import pandas as pd
 from timeit import default_timer as timer
 
 def calc_probs(X, L):
-    print(f'Calculating probabilities for words with length {L} ...')
     probabilities = []
     alphabet = set([c for c in X]) # computes all differents characters in sequence 
     max_probs = {}
@@ -211,7 +210,7 @@ def calc_cond_entropy(probabilities, conditional_probabilities, L):
         if probabilities:
             if conditional_probabilities:
                 for l in range(0, L):
-                    #l means the number of conditional bits. So for a fixed l, we calculate  h_{l+1}.
+                    # l means the number of conditional bits. So for a fixed l, we calculate  h_{l+1}.
                     # print("Sequence: ")
                     # print("Calculating conditional entropy of length: " + str(l+1))
                     acc = 0
