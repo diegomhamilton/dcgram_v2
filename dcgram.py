@@ -22,7 +22,7 @@ def DCGraM(name = 'ternary_even_shift',     \
         moore_label = ''
     # **** Sequence initialization section ****
     if load_original_sequence:
-        print("~~~~~Calculating probabilities for original sequence~~~~~\n")
+        print("~~~ Calculating probabilities for original sequence ~~~\n")
         # Load original sequence
         with open(f'../dcgram_files/{name}/original/original_len_{L}.yaml', 'r') as f:
             original_sequence = yaml.load(f)
@@ -31,13 +31,15 @@ def DCGraM(name = 'ternary_even_shift',     \
         with open(f'../dcgram_files/{name}/original/alphabet.yaml', 'w') as f:
             yaml.dump(alphabet, f)
         with open(f'../dcgram_files/{name}/results/probabilities/original_len_{L}.yaml', 'w') as f:
+            print('~~~ Saving probabilities ~~~')
             yaml.dump(original_probs, f)
         original_cond_probs = sa.calc_cond_probs(original_probs, alphabet, N)
         with open(f'../dcgram_files/{name}/results/probabilities/conditional/original_len_{L}.yaml'\
                   , 'w') as f:
+            print('~~~ Saving conditional probabilities ~~~')
             yaml.dump(original_cond_probs, f)
     else:
-        print("~~~~~Loading probabilities for original sequence~~~~~\n")
+        print("~~~ Loading probabilities for original sequence ~~~\n")
         # Load sequence alphabet
         with open(f'../dcgram_files/{name}/original/alphabet.yaml', 'r') as f:
             alphabet = yaml.load(f)
@@ -63,11 +65,13 @@ def DCGraM(name = 'ternary_even_shift',     \
                 dcgram_machines[K-1] = yaml.load(f)
     else:
         # Generate DMarkov Machines for D in drange
+        print(f'~~~Generating D-Markov machine for D = {D}~~~')
         dmark_machines = dm.DMarkov(original_cond_probs, D, alphabet)
         with open(f'../dcgram_files/{name}/results/machines/dmarkov/dmark_D{D}.yaml', \
         'w') as f:
             yaml.dump(dmark_machines, f)
         for K in krange:
+            print(f'~~~Generating DCGraM machine for D = {D}, K = {K}~~~')
             dcgram_machines[K-1] = km.clusterize(dmark_machines, L, D, K, moore_iter = moore_iter, name = name, save_plot = True)
 
     dcgram_sequences = [None] * K
@@ -103,12 +107,14 @@ def DCGraM(name = 'ternary_even_shift',     \
         # Saves probabilities
         with open(f'../dcgram_files/{name}/results/probabilities/dmarkov/dmark_D{D}.yaml',\
          'w') as f:
+            print(f'~~~ Saving probabilities for D-Markov, D = {D} ~~~')
             yaml.dump(dmark_probs, f)
         # Computes conditional probabilities
         dmark_cond_probs = sa.calc_cond_probs(dmark_probs, alphabet, N)
         # Saves conditional probabilities
         with open(f'../dcgram_files/{name}/results/probabilities/conditional/dmarkov/dmark_D{D}.yaml', \
                     'w') as f:
+            print(f'~~~ Saving conditional probabilities for D-Markov, D = {D} ~~~')
             yaml.dump(dmark_cond_probs, f)
         with open(f'../dcgram_files/{name}/results/probabilities/conditional/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
             yaml.dump(dcgram_cond_probs, f)
@@ -118,11 +124,13 @@ def DCGraM(name = 'ternary_even_shift',     \
             dcgram_probs[K-1], alphabet = sa.calc_probs(dcgram_sequences[K-1], N)
             # Saves probabilities
             with open(f'../dcgram_files/{name}/results/probabilities/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
+                print(f'~~~ Saving probabilities for DCGraM, D = {D}, K = {K} ~~~')
                 yaml.dump(dcgram_probs[K-1], f)
             # Computes conditional probabilities
             dcgram_cond_probs[K-1] = sa.calc_cond_probs(dcgram_probs[K-1], alphabet, N)
             # Saves conditional probabilities
             with open(f'../dcgram_files/{name}/results/probabilities/conditional/dcgram/dcgram_D{D}_K{K}{moore_label}.yaml', 'w') as f:
+                print(f'~~~ Saving conditional probabilities for DCGraM, D = {D}, K = {K} ~~~')
                 yaml.dump(dcgram_cond_probs[K-1], f)
     else:
         with open('../dcgram_files/{}/results/probabilities/dmarkov/dmark_D{}.yaml'.format(name, D),\
