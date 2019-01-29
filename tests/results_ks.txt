@@ -1,0 +1,162 @@
+#### r = 3.75 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.0, pvalue=1.0)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.75: 0.0072193495551884715
+Distance between original system and for probability distribution of state Logistic Map with r = 3.75: 0.0
+
+#### r = 3.7499999 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.12, pvalue=0.4431254026988257)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.12, pvalue=0.4431254026988257)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.14, pvalue=0.26055273160812736)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.17, pvalue=0.09937611310031225)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.16999999999999998, pvalue=0.09937611310031234)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.09000000000000002, pvalue=0.7941837712847727)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.07, pvalue=0.9610182042086673)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.08000000000000002, pvalue=0.8937515524105731)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.7499999: 0.007130323835563151
+Distance between original system and for probability distribution of state Logistic Map with r = 3.7499999: 0.0010609571150617305
+
+#### r = 3.749999 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.06000000000000005, pvalue=0.9921018394783477)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.19999999999999996, pvalue=0.031376652153072594)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.06999999999999995, pvalue=0.9610182042086678)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.14, pvalue=0.26055273160812736)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.14, pvalue=0.26055273160812736)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.17000000000000004, pvalue=0.09937611310031216)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.15000000000000002, pvalue=0.19304165192468994)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.12, pvalue=0.4431254026988257)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.749999: 0.007476721741512117
+Distance between original system and for probability distribution of state Logistic Map with r = 3.749999: 0.0014022881301644257
+
+#### r = 3.74999 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.17000000000000004, pvalue=0.09937611310031216)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.07, pvalue=0.9610182042086673)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.16999999999999998, pvalue=0.09937611310031234)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.19, pvalue=0.047047195905671316)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.21, pvalue=0.020495314493847106)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.08000000000000002, pvalue=0.8937515524105731)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.13000000000000006, pvalue=0.34388571222170056)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.13999999999999996, pvalue=0.2605527316081278)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.74999: 0.007252998276575008
+Distance between original system and for probability distribution of state Logistic Map with r = 3.74999: 0.0013984534314735394
+
+#### r = 3.7499 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.3, pvalue=0.00017421323105301935)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.18000000000000005, pvalue=0.06909243488939809)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.29000000000000004, pvalue=0.00032153876440515545)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.15, pvalue=0.1930416519246901)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.15, pvalue=0.1930416519246901)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.16999999999999998, pvalue=0.09937611310031234)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.33999999999999997, pvalue=1.2196949831581915e-05)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.38000000000000006, pvalue=6.124457175329747e-07)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.7499: 0.0073015220331106336
+Distance between original system and for probability distribution of state Logistic Map with r = 3.7499: 0.0044789400531821625
+
+#### r = 3.749 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.95, pvalue=3.879404245021057e-41)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.56, pvalue=1.426802117171872e-14)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.95, pvalue=3.879404245021057e-41)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.27999999999999997, pvalue=0.0005812506251750573)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.26999999999999996, pvalue=0.0010291327972217215)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.89, pvalue=3.7065423944697716e-36)
+end
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.22000000000000003, pvalue=0.013112321748637808)
+end
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Standard Deviation for probability distribution of state Logistic Map with r = 3.749: 0.0073032081991409765
+Distance between original system and for probability distribution of state Logistic Map with r = 3.749: 0.02173119918458254
+
+#### r = 3.748 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=0.22999999999999998, pvalue=0.008216412727016988)
+end
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.13, pvalue=0.34388571222170117)
+end
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=0.23999999999999994, pvalue=0.005042695196242124)
+end
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.75, pvalue=8.440139398835656e-26)
+end
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.76, pvalue=1.758654071870821e-26)
+end
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.42000000000000004, pvalue=2.2056176563845562e-08)
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.16, pvalue=0.1399751801638586)
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.98, pvalue=9.481228281626575e-44)
+
+#### r = 3.747 ####
+Kolmogorov-Smirnov for probability distribution of state 0: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+Kolmogorov-Smirnov for probability distribution of state 1: Ks_2sampResult(statistic=0.18, pvalue=0.06909243488939824)
+Kolmogorov-Smirnov for probability distribution of state 2: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+Kolmogorov-Smirnov for probability distribution of state 3: Ks_2sampResult(statistic=0.99, pvalue=1.2251433537012255e-44)
+Kolmogorov-Smirnov for probability distribution of state 4: Ks_2sampResult(statistic=0.99, pvalue=1.2251433537012255e-44)
+Kolmogorov-Smirnov for probability distribution of state 5: Ks_2sampResult(statistic=0.5, pvalue=1.0553445530400741e-11)
+Kolmogorov-Smirnov for probability distribution of state 6: Ks_2sampResult(statistic=0.93, pvalue=1.9271763142799626e-39)
+Kolmogorov-Smirnov for probability distribution of state 7: Ks_2sampResult(statistic=0.79, pvalue=1.4045596163255214e-28)
+
+#### r = 3.6 ####
+Kolmogorov-Smirnov for 0: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 1: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 2: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 3: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 4: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 5: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 6: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
+Kolmogorov-Smirnov for 7: Ks_2sampResult(statistic=1.0, pvalue=1.5505547466854487e-45)
+end
