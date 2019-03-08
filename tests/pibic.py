@@ -24,18 +24,18 @@ def logistic_map(x0 = 0.5, r = 3.75):
                      s += '2'
      return s
 
-def calc_mean_vector(machine, sequence, N):
+def calc_mean_vector(machine, sequence, N, rep = 1000):
     average = []
-    for i in range(1000):
+    for i in range(rep):
         average.append(sa.calc_occup_vector(machine, sequence[i*N:], N))
     mean = np.mean(average, axis = 0)
     d = []
     # for i in range(len(average[0])):
     #     d.append([abs(a[i] - calc_occup[i]) for a in average])
 
-    for v in average:
-        d.append(np.linalg.norm(calc_occup - v))
-    print(f'erro medio = {np.mean(d)}')  
+#     for v in average:
+#         d.append(np.linalg.norm(calc_occup - v))
+#     print(f'erro medio = {np.mean(d)}')  
     return mean, np.std(average, axis = 0), average
 
 def plot_bar(vec1, std1, vec2, std2, r = 3.75, x0 = 0.5):

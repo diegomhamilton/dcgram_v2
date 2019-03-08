@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import normalize
 import pandas as pd
+import random
 #debug
 from timeit import default_timer as timer
 
@@ -277,6 +278,23 @@ def calc_kldivergence(seq_probs, base_probs, K):
     print("*****************")
     return kldivergence
 
+def calc_kldivergence_vector(vec1, vec2):
+    kldivergence = 0
+    print("Calculating Kullback-Leibler divergence")
+    if len(vec1) and len(vec1) == len(vec2):
+        #Probabilities of subsequences of length K are stored in probabilities[K-1]
+        for i in range(len(vec1)):
+            p = vec1[i] or 1e-15
+            q = vec2[i] or 1e-15
+            # print(f'p={p}, q={q}')
+            kldivergence += p*np.log2(p/q)
+    else:
+        print ("[error] Probabilities not computed.")
+    print("*****************")
+    print("Kullback-Leibler divergence calculated!")
+    print("*****************")
+    return kldivergence
+
 '''
 Name: calc_occup_vector
 Input:
@@ -317,6 +335,64 @@ def calc_occup_vector(machine, sequence, N):
         #print()
         if not erro:
             return occup_vector
+    return occup_vector
+
+def calc_occup_vector_dict(machine, sequence, N):
+    for i in range(len(machine.states)):
+        states = machine.states
+        st_counter = [0 for j in states]
+        idx = dict((s.name, states.index(s)) for s in states)
+        st_index = i
+        erro = 0
+        for label in sequence[:N]:
+            cur_st = states[st_index]
+            cur_oedges = cur_st.outedges
+            for oedge in cur_oedges:
+                if oedge[0] == label:
+                    st_index = idx[oedge[1]]
+                    break
+                #decide action if label doesn't exist in current state
+            if not(oedge[0] == label):
+                erro = 1
+                break
+            st_counter[st_index] += 1
+        
+        st_counter = np.array(st_counter)
+        #print(erro)
+        occup_vector = normalize(np.array(st_counter).reshape(-1, 1), norm='l1', axis=0).ravel()
+        #print(occup_vector)
+        #print()
+        if not erro:
+            return occup_vector
+    return occup_vector
+
+def iterate_machine(machine, L, label_size = 1):
+    states = machine.states
+    idx = dict((s.name, states.index(s)) for s in states)
+    sequence = ''
+    st_counter = [0 for j in states]
+
+    curr_state = states[0]
+    #Generate a L length sequence from DMarkov with D = curr_d
+    for i in range(int(L/label_size)):
+        # Set data parameters
+        labels = [outedge[0] for outedge in curr_state.outedges]
+        probabilities = [outedge[-1] for outedge in curr_state.outedges]
+        # Weight formatting
+        probabilities = [int(p * 10e16) for p in probabilities]
+        # Chooses next state
+        label = random.choices(labels, probabilities)[0]
+        # print(f'Labe = {label}')
+        sequence = sequence + label
+        # Goes to next state
+        curr_state_name = [outedge[1] for outedge in curr_state.outedges if \
+                            outedge[0] == label][0]
+        
+        st_index = idx[curr_state_name]
+        st_counter[st_index] += 1
+        curr_state = states[st_index]
+    
+    occup_vector = normalize(np.array(st_counter).reshape(-1, 1), norm='l1', axis=0).ravel()
     return occup_vector
 
 def calc_euclidian_distance(seq_probs, base_probs, K):

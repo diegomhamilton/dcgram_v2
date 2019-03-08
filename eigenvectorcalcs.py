@@ -23,5 +23,8 @@ def occup_vector(machine):
     values, vectors = eig(P, right = False, left = True)
     vectors = np.matrix.transpose(vectors)
     occup = vectors[near(values, 1, 0.02)][0]
-    normalized_occup = normalize(occup[:,np.newaxis], norm='l1', axis=0).ravel()
-    return normalized_occup
+    # try:
+    normalized_occup = normalize(occup.real[:,np.newaxis], norm='l1', axis=0).ravel()
+    # except:
+    #     normalized_occup = normalize(occup.real[:,np.newaxis], norm='l1', axis=0).ravel()
+    return abs(normalized_occup)
