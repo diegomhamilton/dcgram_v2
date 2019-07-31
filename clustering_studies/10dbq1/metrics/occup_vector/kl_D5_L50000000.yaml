@@ -1,0 +1,19 @@
+!!python/object/apply:numpy.core.multiarray._reconstruct
+args:
+- !!python/name:numpy.ndarray ''
+- !!python/tuple [0]
+- !!binary |
+  Yg==
+state: !!python/tuple
+- 1
+- !!python/tuple [30]
+- !!python/object/apply:numpy.dtype
+  args: [f8, 0, 1]
+  state: !!python/tuple [3, <, null, null, null, -1, -1, 0]
+- false
+- !!binary |
+  aSKFFRuxHj/u8+9laF1fP2fiqYk2rlw/F1oIOKU4Xj9Tj5fiaJZdP8KDqPOPW18/seXwpOCEXT+1
+  kWdu8EteP7f7qMgZcV4/3jSF5wiNXj/VFscWvMddPw2v+/l8tS8/NB+lTElaSj/U1T6ZVnUsPxjl
+  /MF+Vy0/ksByxii2Lz9+u1dzoW6HP2mhrv+ExIc/8cz04ChYhz89zW7S2W6HP6Lfa8Zxue0/6dgg
+  F8VAQT/sIa9BPmxCP98uwcodDUI/cDMmDupsQj8uLG6S1WNBPy4sbpLVY0E/LKF5CPxEQj9PqkOP
+  lARDP7Cy8NSnRUI/

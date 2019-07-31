@@ -1,0 +1,37 @@
+!!python/object/apply:numpy.core.multiarray._reconstruct
+args:
+- !!python/name:numpy.ndarray ''
+- !!python/tuple [0]
+- !!binary |
+  Yg==
+state: !!python/tuple
+- 1
+- !!python/tuple [158]
+- !!python/object/apply:numpy.dtype
+  args: [f8, 0, 1]
+  state: !!python/tuple [3, <, null, null, null, -1, -1, 0]
+- false
+- !!binary |
+  b0uBWHiPCj+MxrFgqOT4PlLQUFBIOvw+6CHHlBey3T6iJvp8lBH3PoCMLcIcVgs/xb8ZRot9Iz/y
+  fKOp4OjhPgnbkeLKdhE/rCrqgrAJ7z7wSz/Ze477PmNB5YhKXQE/g8LBWozsED+ydbo9Uo4TP6VE
+  Gi7VefI+n/55Oz4x/T7FlQ4xuaz9PnxywdffK/0+vnX2fGpI7j5eBaUmyYzqPq81xhTNf+8+Ca0D
+  92656z6iOT6cuAMCP+MyE7EtqAQ/7X4V4LvNSz/RUoGsCoFKP8CyFMHmuTE/zXDqoJ6ATj9+O2j6
+  FQBNP+P44+5a31M/hvEmAWL5UD+ReSYs2ONRPwu5jHoMfys/+0HZa6yKUT/Re9/PWwJRP0Vy6OOQ
+  w1Y/+mAZG7rZLz8RgE0QVBFXP4piqHl9nE8/sP8ZKYSjTj8u8MtPYPBPP9JgCVo3lFA/VbXuMDcp
+  Vj9mhUPruExTP3xs5B1UoE4/DOLqnV0AUj8Lrn/4dbctP1zDFP5vmVE/ammPk5k9Vj/WKix+dGZS
+  P2NZtCns3FM/0bO0riwsUz+6ahrrTdLtPjNZ1A4cI+s+ltQB99lU7z4nSK6T4RUUP3toYUfKs+4+
+  ScxgSixCFD89i1IAlNgYP1sXbUTmgOM+/Knx0k1iID9Z5gh0gSbtPkjHMIIhBhU/VefmVXzHGT+H
+  rp9ZbVkZP8KipobLZAc/XQwv0tVnGD9HsRZ+9HYZPwMY4Mz5czs/YyOU54+jKD/qNYe1QqIaP4Oq
+  TXNdvgY/Yx23LQQYGj8ZHpgvcdwAP7SESpZyQhE/MVhYDRUlCT9tMpFvQmP+PjF6LIVZywE/S+VQ
+  M2JuAD/T41LwbysYP6gfDvGTk+4+ydoyIkn3ED8nTzg/7vARP8fFxQ+dtyQ/Q8U4fxMKET9nPq3D
+  TR02PyAXrKNwXgg/L1wM1BhjJj9Y3Kjja67+PhHSS3PIWRo/Bc3fa6VjED/iCw9x3sX8PqAqrkOY
+  TyQ/nvQZqyi5Dj9/t+XIb3YAP6869tzXux4/lN8/aeptGj/4ZM3hvRcdP71rluxU0P8+TNCyMDzd
+  Fj8IqNMuZH0cP9LGrkA2wQ4/3y7Byh0NEj9Dm9KwzueCP8vvG/xQq4A/0KnYVrs/gT8n5cX0SnqE
+  Pz4uotT7GYA/iWn4eQBJgD/k2Sd48RuCP9QRPJU+uuw/KNDMOLKXMj/iISl1C1UoP7oS5BTbrDM/
+  94pVIAb8Mj/u6lVkdEAyP0/KpIY2ACs/x1RuYHoUMT/T4qX+7tsoP3J6i0XbSjI/hDzMqEO4Mz/N
+  6OSYbgoyP2ZHkVJclxI/pEZ0EdcYMT9Oumc8lfwtPzA3MYdRzi8/x6JEptfBLD9JolU1WnEuP5YV
+  1AFaBDA/PhNxpWRaNz8cHxQxeNoyP35/90z+QCw/GIEMePQaNj+Oxy1ir+IaP0KZBHe56yk/U/Ik
+  yIzgFD89f5iMfMEbPxshbhR6eRE/GZCc0BTPMz/CrAYX4dwVP3MB/fgqfTE/luaYJH33Kj//f7XN
+  AUAdP3xywdffKx0/DNWDOMWZNT+/uPF6ckUgPwe9cTGKDhY/kNa9us+WGD/nQMUnU7sVP5DVEMlO
+  Ryk/eHl8c2ZYKD+Ak7dtKTEpP0zE+Lwkxik/13TzQ1uEOD9htUMN8O4yP0SgXTJMdSo/+YahWQK+
+  FT9BrEiW3d0UPw==

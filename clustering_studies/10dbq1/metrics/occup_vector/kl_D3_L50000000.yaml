@@ -1,0 +1,15 @@
+!!python/object/apply:numpy.core.multiarray._reconstruct
+args:
+- !!python/name:numpy.ndarray ''
+- !!python/tuple [0]
+- !!binary |
+  Yg==
+state: !!python/tuple
+- 1
+- !!python/tuple [7]
+- !!python/object/apply:numpy.dtype
+  args: [f8, 0, 1]
+  state: !!python/tuple [3, <, null, null, null, -1, -1, 0]
+- false
+- !!binary |
+  ryt/IVgTUz99td3j0EtqP1rLbKnm5mk/lF9Q8F7/jz8vszr/l6fuP+te3WdLDJA/ZUQWJ8ZLaj8=

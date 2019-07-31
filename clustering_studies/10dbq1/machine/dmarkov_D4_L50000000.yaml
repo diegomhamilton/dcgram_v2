@@ -1,0 +1,106 @@
+!!python/object:dmarkov.DMarkov
+alphabet: !!set {'0': null, '1': null}
+index_labels: {'0': 0, '1': 1}
+label_names: ['0', '1']
+state_probs: [0.00035880008611202067, 0.0008072801937472466, 0.0007718201852368445,
+  0.002449000587760141, 0.0007773801865712448, 0.0023750205700049367, 0.002332680559843334,
+  0.013347023203285567, 0.0008072801937472465, 0.002413540579249739, 0.002380580571339337,
+  0.013230703175368761, 0.0024434405864257407, 0.01323626317670316, 0.013347023203285568,
+  0.9289221429413141]
+states:
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1111'
+  outedges:
+  - !!python/tuple ['0', '1110', 0.6761426978818283]
+  - !!python/tuple ['1', '1111', 0.32385730211817165]
+  state_prob: 0.00035880008611202067
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1110'
+  outedges:
+  - !!python/tuple ['0', '1100', 0.7233178079476761]
+  - !!python/tuple ['1', '1101', 0.27668219205232386]
+  state_prob: 0.0008072801937472466
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1101'
+  outedges:
+  - !!python/tuple ['0', '1010', 0.7169288175999585]
+  - !!python/tuple ['1', '1011', 0.2830711824000415]
+  state_prob: 0.0007718201852368445
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1100'
+  outedges:
+  - !!python/tuple ['0', '1000', 0.7822376480195999]
+  - !!python/tuple ['1', '1001', 0.21776235198040017]
+  state_prob: 0.002449000587760141
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1011'
+  outedges:
+  - !!python/tuple ['0', '0110', 0.711595358769199]
+  - !!python/tuple ['1', '0111', 0.2884046412308009]
+  state_prob: 0.0007773801865712448
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1010'
+  outedges:
+  - !!python/tuple ['0', '0100', 0.7780060799488004]
+  - !!python/tuple ['1', '0101', 0.22199392005119958]
+  state_prob: 0.0023750205700049367
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1001'
+  outedges:
+  - !!python/tuple ['0', '0010', 0.7741824853816212]
+  - !!python/tuple ['1', '0011', 0.2258175146183789]
+  state_prob: 0.002332680559843334
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '1000'
+  outedges:
+  - !!python/tuple ['0', '0000', 0.8688426330371873]
+  - !!python/tuple ['1', '0001', 0.13115736696281266]
+  state_prob: 0.013347023203285567
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0111'
+  outedges:
+  - !!python/tuple ['0', '1110', 0.6994846893271232]
+  - !!python/tuple ['1', '1111', 0.3005153106728768]
+  state_prob: 0.0008072801937472465
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0110'
+  outedges:
+  - !!python/tuple ['0', '1100', 0.7727570290941935]
+  - !!python/tuple ['1', '1101', 0.22724297090580642]
+  state_prob: 0.002413540579249739
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0101'
+  outedges:
+  - !!python/tuple ['0', '1010', 0.7652252812339849]
+  - !!python/tuple ['1', '1011', 0.23477471876601502]
+  state_prob: 0.002380580571339337
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0100'
+  outedges:
+  - !!python/tuple ['0', '1000', 0.863999637207404]
+  - !!python/tuple ['1', '1001', 0.136000362792596]
+  state_prob: 0.013230703175368761
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0011'
+  outedges:
+  - !!python/tuple ['0', '0110', 0.7613692171692369]
+  - !!python/tuple ['1', '0111', 0.23863078283076317]
+  state_prob: 0.0024434405864257407
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0010'
+  outedges:
+  - !!python/tuple ['0', '0100', 0.8599800850089074]
+  - !!python/tuple ['1', '0101', 0.14001991499109268]
+  state_prob: 0.01323626317670316
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0001'
+  outedges:
+  - !!python/tuple ['0', '0010', 0.8563964090860732]
+  - !!python/tuple ['1', '0011', 0.14360359091392685]
+  state_prob: 0.013347023203285568
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: '0000'
+  outedges:
+  - !!python/tuple ['0', '0000', 0.9875162166482194]
+  - !!python/tuple ['1', '0001', 0.012483783351780525]
+  state_prob: 0.9289221429413141

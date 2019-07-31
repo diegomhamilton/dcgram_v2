@@ -1,0 +1,545 @@
+!!python/object:probabilisticgraph.ProbabilisticGraph
+alphabet: ['0', '1']
+states:
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 0
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 15
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - &id001 !!python/object/apply:numpy.dtype
+        args: [f8, 0, 1]
+        state: !!python/tuple [3, <, null, null, null, -1, -1, 0]
+      - !!binary |
+        rv6mQe/t5D8=
+  - !!python/tuple
+    - '1'
+    - 0
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        pgKyfCEk1j8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 1
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 20
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        L6ThRg/M6T8=
+  - !!python/tuple
+    - '1'
+    - 2
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        Q2955MLPyD8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 2
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 19
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        XwepaJM06T8=
+  - !!python/tuple
+    - '1'
+    - 5
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        heJbXbItyz8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 3
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 16
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        rw8UWDGw6T8=
+  - !!python/tuple
+    - '1'
+    - 6
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        RcGvnzo/yT8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 4
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 18
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        jdtQZfts6T8=
+  - !!python/tuple
+    - '1'
+    - 7
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        y5G8ahJMyj8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 5
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 8
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        UUPopjOs6D8=
+  - !!python/tuple
+    - '1'
+    - 12
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        u/JeZDFPzT8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 6
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 4
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        +y3gHu0a6T8=
+  - !!python/tuple
+    - '1'
+    - 21
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        E0h/hEuUyz8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 7
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 10
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        gvZQf87M6D8=
+  - !!python/tuple
+    - '1'
+    - 22
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        9SW8AsbMzD8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 8
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 9
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        Pqn0u7EW6T8=
+  - !!python/tuple
+    - '1'
+    - 23
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        BFstEDmlyz8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 9
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 1
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        2iXGQmpi6T8=
+  - !!python/tuple
+    - '1'
+    - 25
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        mWjn9FZ2yj8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 10
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 3
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        8wMbL1Y66T8=
+  - !!python/tuple
+    - '1'
+    - 26
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        OPCTQ6cWyz8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 11
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 15
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        5Gi7KKv55T8=
+  - !!python/tuple
+    - '1'
+    - 0
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        OC6JrqkM1D8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 12
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 24
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        kM4Wty1i5j8=
+  - !!python/tuple
+    - '1'
+    - 11
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        5GLSkaQ70z8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 13
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 27
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        OeOY44xj5j8=
+  - !!python/tuple
+    - '1'
+    - 12
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        jjnOOOY40z8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 14
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 29
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        iyp+ZONS5j8=
+  - !!python/tuple
+    - '1'
+    - 13
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        6aoDNzla0z8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 15
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 28
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        Jcq7T0955j8=
+  - !!python/tuple
+    - '1'
+    - 14
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        uGuIYGEN0z8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 16
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 20
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        aoIw4Zwj7D8=
+  - !!python/tuple
+    - '1'
+    - 2
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        tOx79hjjvj8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 17
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 19
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        kycRZpe86z8=
+  - !!python/tuple
+    - '1'
+    - 5
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        tWG7Z6INwT8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 18
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 16
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        a3mzBlP36z8=
+  - !!python/tuple
+    - '1'
+    - 6
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        VRoy5bMiwD8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 19
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 18
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        WldCLqPZ6z8=
+  - !!python/tuple
+    - '1'
+    - 7
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        l6L2RnOZwD8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 20
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 20
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        lsLYm7uZ7z8=
+  - !!python/tuple
+    - '1'
+    - 17
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        Y1rPCRmRiT8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 21
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 8
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        VKFl1HI95z8=
+  - !!python/tuple
+    - '1'
+    - 12
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        V700VxqF0T8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 22
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 27
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        /IRTq6Lr5j8=
+  - !!python/tuple
+    - '1'
+    - 12
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        BvZYqboo0j8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 23
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 29
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        j0V7NYEx5z8=
+  - !!python/tuple
+    - '1'
+    - 13
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        5HQJlf2c0T8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 24
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 28
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        HQu/pVxv5z8=
+  - !!python/tuple
+    - '1'
+    - 14
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        xOmBtEYh0T8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 25
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 4
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        WAgjp+en5z8=
+  - !!python/tuple
+    - '1'
+    - 21
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        UO+5sTCw0D8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 26
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 10
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        V3Zv+Tlj5z8=
+  - !!python/tuple
+    - '1'
+    - 22
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        UhMhDYw50T8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 27
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 9
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        aLp8lB+E5z8=
+  - !!python/tuple
+    - '1'
+    - 23
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        MIsG18D30D8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 28
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 1
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        WxW1x5bn5z8=
+  - !!python/tuple
+    - '1'
+    - 25
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        SNWVcNIw0D8=
+  state_prob: 0.0
+- !!python/object:probabilisticstate.ProbabilisticState
+  name: 29
+  outedges:
+  - !!python/tuple
+    - '0'
+    - 3
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        lprv4+LN5z8=
+  - !!python/tuple
+    - '1'
+    - 26
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        0sogODpk0D8=
+  state_prob: 0.0
