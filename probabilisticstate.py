@@ -7,8 +7,8 @@ regarding this new parameter are added.
 '''
 class ProbabilisticState(state.State):
 
-    def __init__(self, name, outedges = []):
-        state.State.__init__(self, name, outedges)
+    def __init__(self, name, outedges = [], state_prob = 0.0):
+        state.State.__init__(self, name, outedges, state_prob = state_prob)
 
 #fill outedges sorted with outedges that have p = 0
     def full_outedges(self, alphabet):

@@ -45,22 +45,42 @@ def generate_sequence(machine, L, label_size = 1):
 
 
 # thinking machine as a dict {state: outedge}
-def generate_sequence_dict(machine, L):
+def generate_sequence_and_occup_vector(machine, L):
     sequence = ''
-    # Starts in machine's first state
-    curr_state_name = list(machine.keys())[0]
+    states = machine.states
+    curr_state = states[0]
+    idx = dict((s.name, states.index(s)) for s in states)
+    st_counter = np.zeros(len(states))
 
-    #Generate a L length sequence from DMarkov with D = curr_d
-    for i in range(L):
+    for i in range(int(L)):
         # Set data parameters
-        labels = [oedge[0] for oedge in machine[curr_state_name]]
-        probabilities = [oedge[-1] for oedge in machine[curr_state_name]]
+        labels = [outedge[0] for outedge in curr_state.outedges]
+        probabilities = [outedge[-1] for outedge in curr_state.outedges]
         # Weight formatting
         probabilities = [int(p * 10e16) for p in probabilities]
         # Chooses next state
         label = random.choices(labels, probabilities)[0]
-        # print(f'Label = {label}')
-        sequence = sequence + label
+        sequence += label
         # Goes to next state
-        curr_state_name = [oedge[1] for oedge in machine[curr_state_name] if oedge[0] == label[0]][0]
-    return sequence
+        next_state_name = [outedge[1] for outedge in curr_state.outedges if \
+                            outedge[0] == label][0]
+        curr_state = states[idx[next_state_name]]
+
+        st_counter[idx[curr_state.name]] += 1
+    
+    occup_vector = st_counter/st_counter.sum()
+
+    return sequence, occup_vector
+
+def logistic_map(x0 = 0.5, r = 3.75):
+     x = [x0]
+     s = ''
+     for i in range(10000000):
+             x.append(r*x[i]*(1-x[i]))
+             if x[i] <= 0.67:
+                     s += '0'
+             elif x[i] <= 0.79:
+                     s += '1'
+             else:
+                     s += '2'
+     return s

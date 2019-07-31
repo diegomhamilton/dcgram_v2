@@ -238,6 +238,40 @@ def calc_cond_entropy(probabilities, conditional_probabilities, L):
         print("*****************")
         return cond_entropy
 
+def calc_cond_entropy_n(probabilities, conditional_probabilities, L, label_length = 1):
+        cond_entropy = []
+        print("Calculating conditional entropy for sequence at: ")
+        print("L = " + str(L))
+        if probabilities:
+            if conditional_probabilities:
+                for l in range(L-label_length, L):
+                    # l means the number of conditional bits. So for a fixed l, we calculate  h_{l+1}.
+                    # print("Sequence: ")
+                    # print("Calculating conditional entropy of length: " + str(l+1))
+                    acc = 0
+                    p = probabilities[l]
+                    pcond = conditional_probabilities[l]
+                    for x in p.keys():
+                        # print('x=' + x)
+                        if l == 0:
+                            acc -= p[x]*np.log2(p[x])
+                        else:
+                            y_given_x = x[-label_length:] + '|' + x[0:-label_length]
+                            if not pcond[y_given_x] == 0:
+                                acc -= p[x]*np.log2(pcond[y_given_x])
+                    cond_entropy.append(acc)
+            else:
+                print("Conditional probabilities not computed.")
+                print("Run calc_cond_probs function before this one.")
+        else:
+            print("Probabilities not computed.")
+            print("Run calc_probs function before this one.")
+        print("*****************")
+        print("Sequence: ")
+        print("Conditional entropy calculated!")
+        print("*****************")
+        return cond_entropy
+
 
 '''
 Name: calc_kldivergence

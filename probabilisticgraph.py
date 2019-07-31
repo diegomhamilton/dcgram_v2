@@ -16,7 +16,7 @@ class ProbabilisticGraph(graph.Graph):
         p_states = []
         for s in states:
             if s:
-                s = pst.ProbabilisticState(s.name, s.outedges)
+                s = pst.ProbabilisticState(s.name, s.outedges, s.state_prob)
                 p_states.append(s)
         graph.Graph.__init__(self, p_states, alphabet, path)
 

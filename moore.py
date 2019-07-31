@@ -125,10 +125,12 @@ def moore_iteration(graph, current_partition):
             partition_for_letter = coarsest_partition(partition_for_letter,
                                                       split)
         partition_for_alphabet.append(partition_for_letter)
+#         print([aaaaaa.state_probs for aaaaaa in partition_for_alphabet])
     final_partition = partition_for_alphabet[0]
     for pb in partition_for_alphabet[1:]:
         final_partition = coarsest_partition(final_partition, pb)
     new_partition = coarsest_partition(current_partition, final_partition)
+    
     return new_partition
 
 '''
@@ -207,9 +209,9 @@ def intersection(p1, p2):
 
     for a in p1.name:
         idx = 0
-        for b in p2.name:
+        for idx2,b in enumerate(p2.name):
             if a == b:
-                inter.append(st.State(b, p2.outedges[idx]))
+                inter.append(st.State(b, p2.outedges[idx], p2.state_probs[idx2]))
                 break
             idx += 1
     if inter:

@@ -183,7 +183,7 @@ class Graph:
 
     def __str__(self):
         for s in self.states:
-            print(s)
+            print(f'{s}, {s.name}: {s.outedges}')
         r = '****************************************\n'
         r += 'Number of states: ' + str(len(self.states)) + '\n'
         return r

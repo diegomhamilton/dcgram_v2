@@ -11,9 +11,10 @@ class State:
     a state name from the letter labeling an edge.
     '''
 
-    def __init__(self, name, outedges = []):
+    def __init__(self, name, outedges = [], state_prob = 0.0):
         self.name = name            #The state's name/label
         self.outedges = outedges    #List of outgoing edges
+        self.state_prob = state_prob # Probability of the state in graph
         #An outgoing edge is a 2-tuple composed of:
         #(label, destination state)
 

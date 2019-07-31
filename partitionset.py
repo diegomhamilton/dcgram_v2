@@ -53,6 +53,7 @@ class PartitionSet:
 
         for s in new_states:
             pt_copy = self.partitions[s.name]
+            weights = pt_copy.state_probs.copy()
             all_oedges = pt_copy.fill_outedges(machine)
             # DEBUG print('all_oedges={}'.format(all_oedges))
             random_oedges = random.choice(pt_copy.outedges)
@@ -67,7 +68,7 @@ class PartitionSet:
                     for morph in all_oedges if morph[index_labels[label]][-1] != 0]
                 # DEBUG print('probs = {}'.format(curr_probs))
                 if curr_probs:
-                    probs = np.mean(curr_probs)
+                    probs = np.average(curr_probs, axis = 0, weights=weights)
                     new_oedges.append((label, dest, probs))
                     # DEBUG print('new-oedges={}'.format((label, dest, probs)))
             s.outedges = new_oedges
@@ -140,3 +141,12 @@ class PartitionSet:
             prob_for_edge.append(val)
         avg = sum(prob_for_edge)/total_prob
         return avg
+    
+    def _str_(self):
+        for p in self.partitions:
+            for i in range(0, len(p.name)):
+                print(f'{p.name[i]}: {p.outedges[i]}')
+            print('end of partition')
+        r = '**************\n'
+        r += 'Number of partitions: ' + str(len(self.partitions)) + '\n'
+        return r

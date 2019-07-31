@@ -13,6 +13,7 @@ class Partition(ProbabilisticState):
         #A new partition is initialized with just one state:
         self.name = [] if not state else [state.name]
         self.outedges = [] if not state else [state.outedges]
+        self.state_probs = [] if not state else [state.state_prob]
         self.size = 0 if not state else 1
 
     def add_to_partition(self, state):
@@ -26,6 +27,7 @@ class Partition(ProbabilisticState):
             self.name.append(state.name)
             #Adds each outedge of the added state to the partition's edges:
             self.outedges.append(state.outedges)
+            self.state_probs.append(state.state_prob)
             self.size += 1
 
     def remove_from_partition(self, name):
