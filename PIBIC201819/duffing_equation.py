@@ -133,10 +133,10 @@ def quantize(data, N = 4):
     
     return seq
 
-def generate_time_series(beta = 0.1, step = 23, version = 'v1', L = 1000000):
+def generate_time_series(beta = 0.1, step = 23, N = 4, version = 'v1', L = 1000000):
     data_raw = solve_equation(beta = beta, L = L)
     data = data_raw[::23]
-    seq = quantize(data, N=4)
+    seq = quantize(data, N=N)
 
     with open(f'../dcgram_files/duffing_equation_{version}/original/original_len_{len(seq)}.yaml', 'w') as f:
         yaml.dump(seq, f)
