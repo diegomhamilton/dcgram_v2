@@ -142,7 +142,7 @@ class PartitionSet:
         avg = sum(prob_for_edge)/total_prob
         return avg
     
-    def _str_(self):
+    def __str__(self):
         for p in self.partitions:
             for i in range(0, len(p.name)):
                 print(f'{p.name[i]}: {p.outedges[i]}')

@@ -72,3 +72,9 @@ class Partition(ProbabilisticState):
                 new_e[index_labels[e[0]]] = e
             new_oedges.append(new_e)
         return new_oedges
+    
+    def __str__(self):
+        for i in range(0, len(self.name)):
+            print(f'{self.name[i]}: {self.outedges[i]}')
+
+        return 'end of partition\r\n'
